@@ -2,6 +2,8 @@
 
 jquery.occasions is a [jQuery](http://www.jquery.com/) plugin that tags an element with a class referencing the current day's occasion or holiday. You can then style that element with CSS (or do something else clever with it). For example, you could show special versions of your site's logo on different holidays.
 
+Minified version size: ~1.6kb
+
 ##Basic usage
 
 Call jquery.occasions on the element that you want to tag with special occasions:
