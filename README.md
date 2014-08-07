@@ -10,7 +10,7 @@ Call jquery.occasions on the element that you want to tag with special occasions
 
 `$('.logo').occasions();`
 
-This will result in:
+This will result in (on May the 4th):
 
 `<h1><a class="star-wars" href="/">Logo</a></h1>`
 
