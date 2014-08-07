@@ -1,12 +1,10 @@
 /*
- *
  * Copyright (c) 2014 Stephen Peasley (http://www.stephenpeasley.com)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  * 
  * Version 0.0.1
  * Made in Canada
- *
  */
 ;(function ( $ ) {
 	'use strict';
