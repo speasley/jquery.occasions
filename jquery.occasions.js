@@ -43,6 +43,30 @@
 			var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
 			return date;
 		}
+		function _weekdayBefore(weekday,month,date) {
+			var weekday = weekday-1;
+			var month = month-1;
+			var d = new Date(today.getFullYear(), month, date, 0, 0, 0, 0);
+			var day = date;
+			if(d.getDay() == weekday) {
+				day -= 7;
+			}else{
+		    var weekday_index = d.getDay(); // this is the weekday of the first of the month
+				var count = 0;
+				while(weekday_index != weekday){
+					weekday_index--; count++;
+					if(weekday_index==-1) {
+						weekday_index=6;
+					}
+				}
+				day -= count; // this is the first occurence of the weekday in the month
+		  }
+			d = d.setDate(day);
+	    d = new Date(d);
+			month = d.getMonth()+1;
+			var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+			return date;
+		}
 		// compare date to occasion
 		var occasions = {
 			'01/01':'new-years',
@@ -66,7 +90,7 @@
 			case 'canada':
 				occasions[_nthDay(2,1,3)] = 'dst-begins'; // Second Sunday of March
 				occasions[_nthDay(2,1,5)] = 'mothers'; // Second Sunday of May
-				occasions['05/19'] = 'victoria';
+				occasions[_weekdayBefore(2,5,25)] = 'victoria'; // Monday before May 25
 				occasions[_nthDay(3,1,6)] = 'fathers'; // Third Sunday of June
 				occasions['06/21'] = 'aboriginal';
 				occasions[_nthDay(1,2,9)] = 'labour'; // First Monday of September

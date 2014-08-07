@@ -39,6 +39,7 @@ In your CSS, define the styles of the occasions that you wish to make use of. Yo
 
 * Country setting bugfix
 * Support for nth weekday occasions (eg. Mother's Day, Second Sunday of May)
+* Support for the weekday preceding a date (eg. Victoria Day, Monday before May 25)
 * Add Canadian and Christian nth weekday occasions
 * Remove Christian Easter occasions because they are based on moon cycles and beyond the scope of my interest in writing this plugin
 
