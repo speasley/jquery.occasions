@@ -1,5 +1,5 @@
 #jquery.occasions
-=========================
+
 jquery.occasions is a [jQuery](http://www.jquery.com/) plugin that tags an element with a class referencing the current day's occasion or holiday. You can then style that element with CSS (or do something else clever with it). For example, you could show special versions of your site's logo on different holidays.
 
 ##Basic usage
@@ -32,6 +32,13 @@ In your CSS, define the styles of the occasions that you wish to make use of. Yo
 * Some unofficial holidays
 * Canadian fixed-date national holidays and observances
 * Christian fixed-date holidays and observances
+
+### Version 0.0.2: Yoho
+
+* Country setting bugfix
+* Support for nth weekday occasions (eg. Mother's Day, Second Sunday of May)
+* Add Canadian and Christian nth weekday occasions
+* Remove Christian Easter occasions because they are based on moon cycles and beyond the scope of my interest in writing this plugin
 
 ##Contributing
 

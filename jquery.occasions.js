@@ -16,12 +16,35 @@
 			sect: 'none'
     }, options );
 		// get date
-		var d = new Date();
-		var month = d.getMonth()+1;
-		var day = d.getDate();
-		var weekday = d.getDay();
-		var year = d.getFullYear();
-		var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+		var today = new Date();
+		var now_month = today.getMonth()+1;
+		var now_day = today.getDate();
+		var now_date = (now_month<10 ? '0' : '') + now_month + '/' + (now_day<10 ? '0' : '') + now_day;
+		// date helpers
+		function _nthDay(nth,weekday,month) {
+			var nth = nth-1;
+			var weekday = weekday-1;
+			var month = month-1;
+		  var d = new Date(today.getFullYear(), month, 1, 0, 0, 0, 0);
+		  var day = 1;
+		  if(d.getDay() != weekday) {
+		    var weekday_index = d.getDay(); // this is the weekday of the first of the month
+				var count = 0;
+				while(weekday_index != weekday){
+					weekday_index++; count++;
+					if(weekday_index==7) {
+						weekday_index=0;
+					}
+				}
+				day += count; // this is the first occurence of the weekday in the month
+		  }
+			day = day + (7*nth);
+			d = d.setDate(day);
+	    d = new Date(d);
+			month = d.getMonth()+1;
+			var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+			return date;
+		}
 		// compare date to occasion
 		var occasions = {
 			'01/01':'new-years',
@@ -41,19 +64,18 @@
 			'12/31':'new-years-eve'
 		};
 		// add and override occasions by country
-		switch(settings.sect.toLowerCase()) {
+		switch(settings.country.toLowerCase()) {
 			case 'canada':
-				occasions['05/11'] = 'mothers';
+				occasions[_nthDay(2,1,3)] = 'dst-begins'; // Second Sunday of March
+				occasions[_nthDay(2,1,5)] = 'mothers'; // Second Sunday of May
 				occasions['05/19'] = 'victoria';
-				occasions['06/15'] = 'fathers';
+				occasions[_nthDay(3,1,6)] = 'fathers'; // Third Sunday of June
 				occasions['06/21'] = 'aboriginal';
-				occasions['09/01'] = 'labour';
-				occasions['10/13'] = 'thanksgiving';
-				occasions['10/23'] = 'diwali';
+				occasions[_nthDay(1,2,9)] = 'labour'; // First Monday of September
+				occasions[_nthDay(2,2,10)] = 'thanksgiving'; // Second Monday of October
 				occasions['11/01'] = 'all-saints';
-				occasions['11/02'] = 'dst-ends';
+				occasions[_nthDay(1,1,11)] = 'dst-ends'; // First Sunday of November
 				occasions['12/11'] = 'statute';
-				occasions['11/02'] = 'dst-ends';
 			break;
 			default:
 			break;
@@ -61,21 +83,9 @@
 		// add and override occasions by sect
 		switch(settings.sect.toLowerCase()) {
 			case 'christian':
-				occasions['04/13'] = 'palm';
-				occasions['04/17'] = 'maundy';
-				occasions['04/18'] = 'good';
-				occasions['04/19'] = 'holy';
-				occasions['04/20'] = 'eastern';
-				occasions['04/21'] = 'easter';
-				occasions['05/29'] = 'ascension';
-				occasions['06/8'] = 'pentecost';
-				occasions['06/9'] = 'whit';
-				occasions['06/15'] = 'trinity';
-				occasions['06/19'] = 'corpus-christi';
 				occasions['08/15'] = 'assumption';
 				occasions['10/4'] = 'st-francis';
 				occasions['11/2'] = 'all-souls';
-				occasions['11/30'] = 'advent';
 				occasions['12/8'] = 'immaculate';
 				occasions['12/24'] = 'christmas-eve';
 				occasions['12/25'] = 'christmas';
@@ -83,8 +93,8 @@
 			default:
 			break;
 		}
-		if(occasions[date]!=null) {
-			this.addClass(occasions[date]);
+		if(occasions[now_date]!=null) {
+			this.addClass(occasions[now_date]);
 		}
 		return this;
 	};
