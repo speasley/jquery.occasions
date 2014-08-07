@@ -18,9 +18,9 @@ In your CSS, define the styles of the occasions that you wish to make use of. Yo
 
 ###Options
 
-####Country (default: Canada)
+####Country (default: none)
 
-`$('.logo').occasions({country:'USA'});`
+`$('.logo').occasions({country:'Canada'});`
 
 ####Sect (default: none)
 
