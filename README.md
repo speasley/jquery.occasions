@@ -8,11 +8,15 @@ Minified version size: ~2kb
 
 Call jquery.occasions on the element that you want to tag with special occasions:
 
-`$('.logo').occasions();`
+```
+$('.logo').occasions();
+```
 
 On May the 4th, this will result in:
 
-`<h1><a class="star-wars" href="/">Logo</a></h1>`
+```
+<h1><a class="star-wars" href="/">Logo</a></h1>
+```
 
 In your CSS, define the styles of the occasions that you wish to make use of. You are provided with supported style stubs in `jquery.occasions.css`. You may ignore the occasions that you do not want to use but their class name will still be added to your element.
 
