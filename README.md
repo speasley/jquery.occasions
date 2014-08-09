@@ -18,13 +18,23 @@ In your CSS, define the styles of the occasions that you wish to make use of. Yo
 
 ###Options
 
-####Country (default: none)
+####Country
 
 `$('.logo').occasions({country:'Canada'});`
 
-####Sect (default: none)
+####Sect
 
 `$('.logo').occasions({sect:'Christian'});`
+
+####Callback
+
+```
+$('.logo').occasions({
+	onSuccess: function() {
+		//add your callback code here
+  }
+});
+```
 
 ## Change Log
 
@@ -42,6 +52,10 @@ In your CSS, define the styles of the occasions that you wish to make use of. Yo
 * Support for the weekday preceding a date (eg. Victoria Day, Monday before May 25)
 * Add Canadian and Christian nth weekday occasions
 * Remove Christian Easter occasions because they are based on moon cycles and beyond the scope of my interest in writing this plugin
+
+### Version 0.1.1: Bow River
+
+* Add callback function
 
 ##Contributing
 

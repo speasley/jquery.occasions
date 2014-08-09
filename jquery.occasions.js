@@ -8,11 +8,14 @@
  */
 ;(function ( $ ) {
 	'use strict';
-	$.fn.occasions = function(options) {
+	$.fn.occasions = function() {
+		
 		var settings = $.extend({
 			country: 'none',
-			sect: 'none'
-    }, options );
+			sect: 'none',
+			onSuccess: function() {}
+		}, arguments[0] || {});
+
 		// get date
 		var today = new Date();
 		var now_month = today.getMonth()+1;
@@ -43,6 +46,7 @@
 			var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
 			return date;
 		}
+		
 		function _weekdayBefore(weekday,month,date) {
 			var weekday = weekday-1;
 			var month = month-1;
@@ -67,6 +71,7 @@
 			var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
 			return date;
 		}
+		
 		// compare date to occasion
 		var occasions = {
 			'01/01':'new-years',
@@ -86,6 +91,7 @@
 			'12/26':'boxing',
 			'12/31':'new-years-eve'
 		};
+		
 		// add and override occasions by country
 		switch(settings.country.toLowerCase()) {
 			case 'canada':
@@ -103,6 +109,7 @@
 			default:
 			break;
 		}
+		
 		// add and override occasions by sect
 		switch(settings.sect.toLowerCase()) {
 			case 'christian':
@@ -118,7 +125,10 @@
 		}
 		if(occasions[now_date]!=null) {
 			this.addClass(occasions[now_date]);
+			settings.onSuccess.call(this);
 		}
+		
 		return this;
+		
 	};
 }( jQuery ));
