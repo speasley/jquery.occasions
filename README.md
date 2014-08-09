@@ -20,11 +20,15 @@ In your CSS, define the styles of the occasions that you wish to make use of. Yo
 
 ####Country
 
-`$('.logo').occasions({country:'Canada'});`
+```
+$('.logo').occasions({country:'Canada'});
+```
 
 ####Sect
 
-`$('.logo').occasions({sect:'Christian'});`
+```
+$('.logo').occasions({sect:'Christian'});
+```
 
 ####Callback
 
