@@ -1,36 +1,37 @@
 /* Standard and unofficial */
-.new-years { }
-.hug { }
-.valentines { }
-.pi { }
-.april-fools { }
-.first-contact { }
-.four-twenty { }
-.star-wars { }
-.towel { }
-.pirate { }
-.halloween { }
-.ninja { }
-.festivus { }
-.boxing { }
-.new-years-eve { }
+.new-years { } /* New Year's Day*/
+.hug { } /* National Hug Day */
+.valentines { } /* Valentine's Day */
+.pi { } /* Pi Day */
+.april-fools { } /* April Fools' Day */
+.first-contact { } /* First Contact Day */
+.four-twenty { } /* International Cannabis Day */
+.star-wars { } /* Star Wars Day */
+.towel { } /* Towel Day */
+.cat { } /* World Cat Day */
+.pirate { } /* International Talk Like A Pirate Day */
+.halloween { } /* Hallowe'en */
+.ninja { } /* Ninja Day */
+.festivus { } /* Festivus */
+.boxing { } /* Boxing Day */
+.new-years-eve { } /* New Year's Eve */
 
 /* Canada */
-.dst-begins { }
-.mothers { }
-.victoria { }
-.fathers { }
-.aboriginal { }
-.labour { }
-.thanksgiving { }
-.all-saints { }
-.dst-ends { }
-.statute { }
+.dst-begins { } /* Daylight Saving Time begins */
+.mothers { } /* Mother's Day */
+.victoria { } /* Victoria Day */
+.fathers { } /* Father's Day */
+.aboriginal { } /* National Aboriginal Day */
+.labour { } /* Labour Day */
+.thanksgiving { } /* Thanksgiving */
+.all-saints { } /* All Saints' Day */
+.dst-ends { } /* Daylight Saving Time ends */
+.statute { } /* Anniversary of the Statute of Westminster */
 
 /* Christian */
-.assumption { }
-.st-francis { }
-.all-souls { }
-.immaculate { }
-.christmas-eve { }
-.christmas { }
+.assumption { } /* Assumption of Mary */
+.st-francis { } /* Feast of St Francis of Assisi */
+.all-souls { } /* All Souls' Day */
+.immaculate { } /* Feast of the Immaculate Conception */
+.christmas-eve { } /* Christmas Eve */
+.christmas { } /* Christmas */

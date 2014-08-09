@@ -78,6 +78,7 @@
 			'04/20':'four-twenty',
 			'05/04':'star-wars',
 			'05/25':'towel',
+			'08/08':'cat',
 			'09/19':'pirate',
 			'10/31':'halloween',
 			'12/05':'ninja',
