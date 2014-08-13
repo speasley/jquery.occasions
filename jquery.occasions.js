@@ -3,7 +3,7 @@
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  * 
- * Version 0.0.2
+ * Version 0.1.1
  * Made in Canada
  */
 ;(function ( $ ) {
@@ -84,6 +84,7 @@
 			'05/04':'star-wars',
 			'05/25':'towel',
 			'08/08':'cat',
+			'08/13':'lefties',
 			'09/19':'pirate',
 			'10/31':'halloween',
 			'12/05':'ninja',
