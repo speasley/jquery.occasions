@@ -18,7 +18,7 @@ On May the 4th, this will result in:
 <h1 id="logo" class="star-wars"><a href="/">Logo</a></h1>
 ```
 
-In your CSS, define the styles of the occasions that you wish to make use of. You are provided with supported style stubs in `jquery.occasions.css`. You may ignore the occasions that you do not want to use but their class name will still be added to your element.
+In your CSS, define the styles of the occasions that you wish to make use of. You are provided with supported style stubs in `jquery.occasions.css`. You may ignore the occasions that you do not want to use but their class names will still be added to your element.
 
 ##Options
 
