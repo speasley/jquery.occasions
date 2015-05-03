@@ -129,6 +129,7 @@
 
 		if(occasions[now_date]!=null) {
 			this.addClass(occasions[now_date]);
+			this.occasion = occasions[now_date];
 			settings.onSuccess.call(this);
 		}
 

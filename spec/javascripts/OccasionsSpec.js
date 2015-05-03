@@ -27,6 +27,11 @@ describe("Sample element", function() {
 		expect($element).toHaveClass("hug");
 	});
 	
+	it("should provide you with today's occasion", function() {
+		$element.occasions({date:"01/21"});
+		expect($element.occasion).toEqual("hug");
+	});
+	
 });
 
 describe("Options", function() {
@@ -71,7 +76,7 @@ describe("Options", function() {
 			});
 			expect(testVar).toEqual("bar");
 		});
-
+		
 	});
 
 });

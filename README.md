@@ -60,6 +60,14 @@ You can simulate an occasion by overriding today's date with the date that you w
 $('#logo').occasions({date:'05/04'});
 ```
 
+###Current occasion
+
+You can retrieve the current occasion that is attached to your element with:
+
+```
+alert( $('#logo').occasion );
+```
+
 ## Change Log
 
 ### Version 0.0.1: Tunnel Mountain
@@ -86,6 +94,7 @@ $('#logo').occasions({date:'05/04'});
 * Add Jasmine test suite
 * Add date override
 * Use leading zeroes in all dates
+* Set occasion property on element
 
 ##Contributing
 
