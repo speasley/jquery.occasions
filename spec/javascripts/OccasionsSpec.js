@@ -31,7 +31,7 @@ describe("Sample element", function() {
 
 describe("Options", function() {
 
-	describe("country", function() {
+	describe("Country", function() {
 	
 		it("should not add 'aboriginal' class as a default", function() {
 			$element.occasions({date:"06/21"});
@@ -45,7 +45,7 @@ describe("Options", function() {
 
 	});
 
-	describe("sect", function() {
+	describe("Sect", function() {
 	
 		it("should not add 'christmas' class as a default", function() {
 			$element.occasions({date:"12/25"});
@@ -59,7 +59,7 @@ describe("Options", function() {
 
 	});
 
-	describe("callback", function() {
+	describe("Callback", function() {
 
 		it("should execute the callback code", function() {
 			var testVar = "foo"
