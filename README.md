@@ -38,8 +38,8 @@ $('#logo').occasions({sect:'Christian'});
 
 ```
 $('#logo').occasions({
-	onSuccess: function() {
-		//add your callback code here
+  onSuccess: function() {
+    //add your callback code here
   }
 });
 ```
@@ -64,6 +64,11 @@ $('#logo').occasions({
 ### Version 0.1.1: Bow River
 
 * Add callback function
+
+### Version 1.0.0: Skoki
+
+* Add Jasmine test suite
+* Use leading zeroes in all dates
 
 ##Contributing
 
