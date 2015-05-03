@@ -24,17 +24,23 @@ In your CSS, define the styles of the occasions that you wish to make use of. Yo
 
 ###Country
 
+This will give you additional occasions specific to the provided country. In the event of a date overlap, these will trump the standard occasions. Currently, only 'Canada' is supported.
+
 ```
 $('#logo').occasions({country:'Canada'});
 ```
 
 ###Sect
 
+This will give you additional occasions specific to the provided religious sect. In the event of a date overlap, these will trump the standard occasions. Currently, only 'Christian' is supported.
+
 ```
 $('#logo').occasions({sect:'Christian'});
 ```
 
 ###Callback
+
+When jquery.occasions adds a class to your element, code inside the `onSuccess` callback will be executed.
 
 ```
 $('#logo').occasions({
