@@ -126,9 +126,7 @@
 			default:
 			break;
 		}
-		console.log("-----------------");
-		console.log(now_date);
-		console.log(occasions[now_date]);
+
 		if(occasions[now_date]!=null) {
 			this.addClass(occasions[now_date]);
 			settings.onSuccess.call(this);
