@@ -1,15 +1,15 @@
 /*
- * Copyright (c) 2014 Stephen Peasley (http://www.stephenpeasley.com)
+ * Copyright (c) 2014–2015 Stephen Peasley (http://www.speasley.com)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  * 
- * Version 0.1.1
+ * Version 1.0.0
  * Made in Canada
  */
 ;(function ( $ ) {
 	'use strict';
 	$.fn.occasions = function() {
-		
+		console.log("Init");
 		var settings = $.extend({
 			country: 'none',
 			sect: 'none',
@@ -126,6 +126,8 @@
 		}
 		if(occasions[now_date]!=null) {
 			this.addClass(occasions[now_date]);
+			console.log("-------------");
+			console.log(now_date);
 			settings.onSuccess.call(this);
 		}
 		

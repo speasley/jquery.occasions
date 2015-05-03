@@ -3,13 +3,12 @@
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  * 
- * Version 0.2.1
+ * Version 1.0.0
  * Made in Canada
  */
 ;(function ( $ ) {
 	'use strict';
 	$.fn.occasions = function() {
-		
 		var settings = $.extend({
 			country: 'none',
 			sect: 'none',
@@ -21,6 +20,9 @@
 		var now_month = today.getMonth()+1;
 		var now_day = today.getDate();
 		var now_date = (now_month<10 ? '0' : '') + now_month + '/' + (now_day<10 ? '0' : '') + now_day;
+		if (settings.date) {
+			now_date = settings.date;
+		}
 		// date helpers
 		function _nthDay(nth,weekday,month) {
 			var nth = nth-1;
@@ -115,15 +117,18 @@
 		switch(settings.sect.toLowerCase()) {
 			case 'christian':
 				occasions['08/15'] = 'assumption';
-				occasions['10/4'] = 'st-francis';
-				occasions['11/2'] = 'all-souls';
-				occasions['12/8'] = 'immaculate';
+				occasions['10/04'] = 'st-francis';
+				occasions['11/02'] = 'all-souls';
+				occasions['12/08'] = 'immaculate';
 				occasions['12/24'] = 'christmas-eve';
 				occasions['12/25'] = 'christmas';
 			break;
 			default:
 			break;
 		}
+		console.log("-----------------");
+		console.log(now_date);
+		console.log(occasions[now_date]);
 		if(occasions[now_date]!=null) {
 			this.addClass(occasions[now_date]);
 			settings.onSuccess.call(this);

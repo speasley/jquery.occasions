@@ -65,9 +65,10 @@ $('#logo').occasions({
 
 * Add callback function
 
-### Version 0.2.1: Skoki
+### Version 1.0.0: Skoki
 
 * Add Jasmine test suite
+* Use leading zeroes in all dates
 
 ##Contributing
 

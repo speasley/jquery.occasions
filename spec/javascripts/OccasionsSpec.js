@@ -16,5 +16,15 @@ describe("Sample element", function() {
 		$element.occasions();
 		expect($element.occasions).toHaveBeenCalled();
 	});
+	
+	it("should not have a class if today is not an occasion", function() {
+		$element.occasions({date:"01/23"});
+		expect($element).not.toHaveAttr("class");
+	});
+	
+	it("should have a class if 'today' is an occasion", function() {
+		$element.occasions({date:"01/21"});
+		expect($element).toHaveClass("hug");
+	});
 
 });
