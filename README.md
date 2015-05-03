@@ -20,21 +20,21 @@ On May the 4th, this will result in:
 
 In your CSS, define the styles of the occasions that you wish to make use of. You are provided with supported style stubs in `jquery.occasions.css`. You may ignore the occasions that you do not want to use but their class name will still be added to your element.
 
-###Options
+##Options
 
-####Country
+###Country
 
 ```
 $('#logo').occasions({country:'Canada'});
 ```
 
-####Sect
+###Sect
 
 ```
 $('#logo').occasions({sect:'Christian'});
 ```
 
-####Callback
+###Callback
 
 ```
 $('#logo').occasions({
@@ -44,12 +44,14 @@ $('#logo').occasions({
 });
 ```
 
-###Testing
+##Testing
 
-####Date override
+###Date override
+
+You can simulate an occasion by overriding today's date with the date that you wish to test:
 
 ```
-$('#logo').occasions({date:'05/04'}); //this overrides today's date, which is intended only for testing purposes
+$('#logo').occasions({date:'05/04'});
 ```
 
 ## Change Log
