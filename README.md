@@ -44,7 +44,9 @@ $('#logo').occasions({
 });
 ```
 
-####Testing
+###Testing
+
+####Date override
 
 ```
 $('#logo').occasions({date:'05/04'}); //this overrides today's date, which is intended only for testing purposes
