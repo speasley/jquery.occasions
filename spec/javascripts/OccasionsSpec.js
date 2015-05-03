@@ -1,11 +1,11 @@
-describe("Sample element", function() {
-	
-	var $element;
+var $element;
 
-	beforeEach(function() {
-		loadFixtures("occasion.html");
-		$element = $("#logo");
-	});
+beforeEach(function() {
+	loadFixtures("occasion.html");
+	$element = $("#logo");
+});
+
+describe("Sample element", function() {
 
 	it("should exist in the fixture", function() {
 		expect($element).toHaveId("logo");
@@ -27,24 +27,51 @@ describe("Sample element", function() {
 		expect($element).toHaveClass("hug");
 	});
 	
-	it("should not add an 'aboriginal' class as a default", function() {
-		$element.occasions({date:"06/21"});
-		expect($element).not.toHaveClass("aboriginal");
-	});
+});
+
+describe("Options", function() {
+
+	describe("country", function() {
 	
-	it("should add an 'aboriginal' class as an extension", function() {
-		$element.occasions({date:"06/21",country:"canada"});
-		expect($element).toHaveClass("aboriginal");
-	});
+		it("should not add 'aboriginal' class as a default", function() {
+			$element.occasions({date:"06/21"});
+			expect($element).not.toHaveClass("aboriginal");
+		});
 	
-	it("should not add a 'christmas' class as a default", function() {
-		$element.occasions({date:"12/25"});
-		expect($element).not.toHaveClass("christmas");
+		it("should add 'aboriginal' class with country option set", function() {
+			$element.occasions({date:"06/21",country:"canada"});
+			expect($element).toHaveClass("aboriginal");
+		});
+
 	});
+
+	describe("sect", function() {
 	
-	it("should add 'christmas' as an extension", function() {
-		$element.occasions({date:"12/25",sect:"christian"});
-		expect($element).toHaveClass("christmas");
+		it("should not add 'christmas' class as a default", function() {
+			$element.occasions({date:"12/25"});
+			expect($element).not.toHaveClass("christmas");
+		});
+	
+		it("should add 'christmas' class with sect option set", function() {
+			$element.occasions({date:"12/25",sect:"christian"});
+			expect($element).toHaveClass("christmas");
+		});
+
+	});
+
+	describe("callback", function() {
+
+		it("should execute the callback code", function() {
+			var testVar = "foo"
+			$element.occasions({
+				date:"05/04",
+				onSuccess: function() {
+					testVar = "bar"
+				}
+			});
+			expect(testVar).toEqual("bar");
+		});
+
 	});
 
 });

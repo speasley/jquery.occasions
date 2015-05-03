@@ -44,6 +44,12 @@ $('#logo').occasions({
 });
 ```
 
+####Testing
+
+```
+$('#logo').occasions({date:'05/04'}); //this overrides today's date, which is intended only for testing purposes
+```
+
 ## Change Log
 
 ### Version 0.0.1: Tunnel Mountain
