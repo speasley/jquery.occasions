@@ -78,6 +78,7 @@ $('#logo').occasions({date:'05/04'});
 ### Version 1.0.0: Skoki
 
 * Add Jasmine test suite
+* Add date override
 * Use leading zeroes in all dates
 
 ##Contributing
