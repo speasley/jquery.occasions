@@ -54,7 +54,7 @@ $('#logo').occasions({
 
 ###Date override
 
-You can simulate an occasion by overriding today's date with the date that you wish to test:
+You can simulate an occasion by passing in the date you wish to test:
 
 ```
 $('#logo').occasions({date:'05/04'});
@@ -65,7 +65,7 @@ $('#logo').occasions({date:'05/04'});
 You can retrieve the current occasion that is attached to your element with:
 
 ```
-alert( $('#logo').occasion );
+$('#logo').occasion
 ```
 
 ## Change Log
