@@ -10,8 +10,42 @@
 
 	'use strict';
 
+  var el = this;
+  var occasions = null;
+  
   // internal functions
 	var internals = {}
+
+  var loadFiles = internals.loadFiles = function(settings) {
+    var files = ['occasions.json'];
+    if(settings.country != 'none') { files.push(settings.country.toLowerCase()+'.json'); }
+    if(settings.sect != 'none') { files.push(settings.sect.toLowerCase()+'.json'); }
+    var loaded = 0;
+    for (var i=0; i < files.length; i++) {
+      $.ajax({
+        async: true,
+        url: settings.path+files[i],
+        type:'get',
+        dataType:'json',
+        success: function(data) {    
+          if(occasions == null) {
+            occasions = data;
+          }else{
+            mergeHashes(occasions,data);
+          }
+          loaded++;
+          if(loaded===files.length) {
+            main(settings.date);
+          }
+        }
+      });
+    }
+  }
+
+  var mergeHashes = internals.mergeHashes = function(obj, src) {
+    Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
+    return obj;
+  }
 
   var todaysDate = internals.todaysDate = function(override) {
     var today = new Date();
@@ -27,10 +61,18 @@
 	var timestamp = internals.timestamp = function(month,day) {
     var today = new Date();
     var ts = new Date(today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate()).getTime() / 1000;
-  return ts;
+    return ts;
   };
 
-  // main
+  var main = internals.main = function(date) {
+    var todays_date = todaysDate(date);
+    if(occasions[todays_date]!=null) {
+      //el.addClass(occasions[todays_date]);
+      //el.occasion = occasions[todays_date];
+      //settings.onSuccess.call(el);
+    }
+  }
+
   $.fn.occasions = function() { 
  
     var settings = $.extend({
@@ -45,27 +87,10 @@
       return internals;
     }
 
-    var occasions = {};
-    var el = this;
+    loadFiles(settings);
 
     return this.each(function() {
-      $.ajax({
-        url: settings.path+'occasions.json',
-        type:'get',
-        dataType:'json',
-        success: function(data) {    
-          occasions = data;
-          // main
-          var today_date = todaysDate(settings.date);
-          if(occasions[today_date]!=null) {
-            console.log(el);
-            console.log(occasions[today_date]);
-            el.addClass(occasions[today_date]);
-            el.occasion = occasions[today_date];
-            settings.onSuccess.call(el);
-          }
-        }
-      });
+      //reserved
     });
   };
 })(jQuery);
