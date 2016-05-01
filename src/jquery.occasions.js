@@ -10,11 +10,15 @@
 
 	'use strict';
 
-  var el = this;
+  var element = null;
   var occasions = null;
   
   // internal functions
 	var internals = {}
+
+  var setElement = internals.setElement = function(el) {
+    element = el;
+  }
 
   var loadFiles = internals.loadFiles = function(settings) {
     var files = ['occasions.json'];
@@ -35,7 +39,7 @@
           }
           loaded++;
           if(loaded===files.length) {
-            main(settings.date);
+            main(settings);
           }
         }
       });
@@ -64,12 +68,12 @@
     return ts;
   };
 
-  var main = internals.main = function(date) {
-    var todays_date = todaysDate(date);
+  var main = internals.main = function(settings) {
+    var todays_date = todaysDate(settings.date);
     if(occasions[todays_date]!=null) {
-      //el.addClass(occasions[todays_date]);
-      //el.occasion = occasions[todays_date];
-      //settings.onSuccess.call(el);
+      element.addClass(occasions[todays_date]);
+      element.occasion = occasions[todays_date];
+      settings.onSuccess.call(element);
     }
   }
 
@@ -90,7 +94,7 @@
     loadFiles(settings);
 
     return this.each(function() {
-      //reserved
+      setElement($(this));
     });
   };
 })(jQuery);
