@@ -22,15 +22,23 @@ In your CSS, define the styles of the occasions that you wish to make use of. Yo
 
 ##Options
 
-###Country
+###country
 
-This will give you additional occasions specific to the provided country. In the event of a date overlap, these will trump the standard occasions. Currently, only 'Canada' is supported.
+This will give you additional occasions specific to the provided country. In the event of a date overlap, these will trump the standard occasions. Currently, only 'Canada' and 'USA' are supported. Pals.
 
 ```
 $('#logo').occasions({country:'Canada'});
 ```
 
-###Sect
+###path
+
+jquery.occasions will look for its required external files in the same directory from which it is run. If you wish to store these somewhere else, you'll need to provide their filepath.
+
+```
+$('#logo').occasions({path:'../my/file/path'});
+```
+
+###sect
 
 This will give you additional occasions specific to the provided religious sect. In the event of a date overlap, these will trump the standard occasions. Currently, only 'Christian' is supported.
 
@@ -38,7 +46,7 @@ This will give you additional occasions specific to the provided religious sect.
 $('#logo').occasions({sect:'Christian'});
 ```
 
-###Callback
+###onSuccess callback
 
 When jquery.occasions adds a class to your element, code inside the `onSuccess` callback will be executed.
 
@@ -95,6 +103,14 @@ $('#logo').occasion
 * Add date override
 * Use leading zeroes in all dates
 * Set occasion property on element
+
+### Version 2.0.0: Heart Mountain
+
+* Total rewrite with expanded test suite
+* Support multiple occasions per day
+* Support custom occasions
+* Move occasions to external files (loaded as needed)
+* Expand default occasions
 
 ##Contributing
 

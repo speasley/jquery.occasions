@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2014–2015 Stephen Peasley (http://www.speasley.com)
+ * Copyright (c) 2014 Stephen Peasley (http://www.speasley.com)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  * 
- * Version 1.0.0
+ * Version 2.0.0
  * Made in Canada
  */
 ;(function ( $ ) {

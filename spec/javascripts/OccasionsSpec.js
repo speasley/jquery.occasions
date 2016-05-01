@@ -34,6 +34,26 @@ describe("Sample element", function() {
 	
 });
 
+describe("Date Functions", function() {
+
+  it("should return today's date", function() {
+    $element.occasions();
+    var internals = $element.occasions({internals:true});
+    var today = new Date();
+    var month = today.getMonth()+1;
+    var day = today.getDate();
+    var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+    expect(internals.todaysDate()).toEqual(date);
+  });
+
+  it("should return timestamp of date", function() {
+    $element.occasions();
+    var internals = $element.occasions({internals:true});
+    expect(internals.timestamp("04/29") > 1459200000).toBeTruthy();
+  });
+
+});
+
 describe("Options", function() {
 
 	describe("Country", function() {
