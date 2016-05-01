@@ -34,7 +34,16 @@ describe("Sample element", function() {
 	
 });
 
-describe("Date Functions", function() {
+describe("Internal functions", function() {
+
+  describe("mergeHashes()", function() {
+    it("should merge two hashes into one", function() {
+      var a = {"fooa":"bara"};
+      var b = {"foob":"barb"};
+      var internals = $element.occasions({internals:true});
+      expect(internals.mergeHashes(a,b)).toEqual({"fooa":"bara","foob":"barb"});
+    });
+  });
 
   it("should return today's date", function() {
     $element.occasions();
