@@ -5,6 +5,14 @@ beforeEach(function() {
 	$element = $("#logo");
 });
 
+
+describe("occasions", function() {
+  it('should be chainable', function() {
+    $element.occasions().addClass('other');
+    expect($element.hasClass('other')).toBeTruthy();
+	});
+});
+
 describe("Sample element", function() {
 
 	it("should exist in the fixture", function() {
@@ -18,17 +26,17 @@ describe("Sample element", function() {
 	});
 	
 	it("should not have a class if today is not an occasion", function() {
-		$element.occasions({date:"01/23"});
+		$element.occasions({date_override:"01/23"});
 		expect($element).not.toHaveAttr("class");
 	});
 	
 	it("should have a class if 'today' is an occasion", function() {
-		$element.occasions({date:"01/21"});
+		$element.occasions({date_override:"01/21"});
 		expect($element).toHaveClass("hug");
 	});
 	
 	it("should provide you with today's occasion", function() {
-		$element.occasions({date:"01/21"});
+		$element.occasions({date_override:"01/21"});
 		expect($element.occasion).toEqual("hug");
 	});
 	
@@ -68,12 +76,12 @@ describe("Options", function() {
 	describe("Country", function() {
 	
 		it("should not add 'aboriginal' class as a default", function() {
-			$element.occasions({date:"06/21"});
+			$element.occasions({date_override:"06/21"});
 			expect($element).not.toHaveClass("aboriginal");
 		});
 	
 		it("should add 'aboriginal' class with country option set", function() {
-			$element.occasions({date:"06/21",country:"canada"});
+			$element.occasions({date_override:"06/21",country:"canada"});
 			expect($element).toHaveClass("aboriginal");
 		});
 
@@ -82,12 +90,12 @@ describe("Options", function() {
 	describe("Sect", function() {
 	
 		it("should not add 'christmas' class as a default", function() {
-			$element.occasions({date:"12/25"});
+			$element.occasions({date_override:"12/25"});
 			expect($element).not.toHaveClass("christmas");
 		});
 	
 		it("should add 'christmas' class with sect option set", function() {
-			$element.occasions({date:"12/25",sect:"christian"});
+			$element.occasions({date_override:"12/25",sect:"christian"});
 			expect($element).toHaveClass("christmas");
 		});
 
@@ -98,7 +106,7 @@ describe("Options", function() {
 		it("should execute the callback code", function() {
 			var testVar = "foo"
 			$element.occasions({
-				date:"05/04",
+				date_override:"05/04",
 				onSuccess: function() {
 					testVar = "bar"
 				}

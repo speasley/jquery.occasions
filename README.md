@@ -4,9 +4,13 @@ jquery.occasions is a [jQuery](http://www.jquery.com/) plugin that tags an eleme
 
 Minified version size: ~2kb
 
+##Installation
+
+Include `jquery.occasions.js` (or `jquery.occasions.min.js`) and `occasions.json` in your project.
+
 ##Basic usage
 
-Call jquery.occasions on the element that you want to tag with special occasions:
+Call jquery.occasions on the element you want tagged with special occasions:
 
 ```
 $('#logo').occasions();
@@ -24,15 +28,15 @@ In your CSS, define the styles of the occasions that you wish to make use of. Yo
 
 ###country
 
-This will give you additional occasions specific to the provided country. In the event of a date overlap, these will trump the standard occasions. Currently, only 'Canada' and 'USA' are supported. Pals.
+This will give you additional occasions specific to the provided country. 'Canada' and 'USA' are provided. Pals.
 
 ```
-$('#logo').occasions({country:'Canada'});
+$('#logo').occasions({country:'canada'}); //requires canada.json
 ```
 
 ###path
 
-jquery.occasions will look for its required external files in the same directory from which it is run. If you wish to store these somewhere else, you'll need to provide their filepath.
+jquery.occasions will look for its required external files in the same directory from which it is run. If you wish to store these somewhere else, you'll need to provide the filepath.
 
 ```
 $('#logo').occasions({path:'../my/file/path'});
@@ -40,10 +44,10 @@ $('#logo').occasions({path:'../my/file/path'});
 
 ###sect
 
-This will give you additional occasions specific to the provided religious sect. In the event of a date overlap, these will trump the standard occasions. Currently, only 'Christian' is supported.
+This will give you additional occasions specific to the provided religious sect. 'Christian' and 'Pasta' are provided.
 
 ```
-$('#logo').occasions({sect:'Christian'});
+$('#logo').occasions({sect:'pasta'}); //requires pasta.json
 ```
 
 ###onSuccess callback
@@ -65,7 +69,7 @@ $('#logo').occasions({
 You can simulate an occasion by passing in the date you wish to test:
 
 ```
-$('#logo').occasions({date:'05/04'});
+$('#logo').occasions({date_override:'05/04'});
 ```
 
 ###Current occasion
@@ -100,7 +104,7 @@ $('#logo').occasion
 ### Version 1.0.0: Skoki
 
 * Add Jasmine test suite
-* Add date override
+* Add date date_override
 * Use leading zeroes in all dates
 * Set occasion property on element
 
@@ -109,7 +113,7 @@ $('#logo').occasion
 * Total rewrite with expanded test suite
 * Support multiple occasions per day
 * Support custom occasions
-* Move occasions to external files (loaded as needed)
+* Move occasions to external files (loaded only as needed)
 * Expand default occasions
 
 ##Contributing

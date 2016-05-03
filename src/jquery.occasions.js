@@ -10,17 +10,13 @@
 
 	'use strict';
 
-  var element = null;
+  var $element = null;
   var occasions = null;
   
   // internal functions
 	var internals = {}
 
-  var setElement = internals.setElement = function(el) {
-    element = el;
-  }
-
-  var loadFiles = internals.loadFiles = function(settings) {
+  var init = internals.init = function(settings,element) {
     var files = ['occasions.json'];
     if(settings.country != 'none') { files.push(settings.country.toLowerCase()+'.json'); }
     if(settings.sect != 'none') { files.push(settings.sect.toLowerCase()+'.json'); }
@@ -39,7 +35,7 @@
           }
           loaded++;
           if(loaded===files.length) {
-            main(settings);
+            main(settings,element);
           }
         }
       });
@@ -68,8 +64,8 @@
     return ts;
   };
 
-  var main = internals.main = function(settings) {
-    var todays_date = todaysDate(settings.date);
+  var main = internals.main = function(settings,element) {
+    var todays_date = todaysDate(settings.date_override);
     if(occasions[todays_date]!=null) {
       element.addClass(occasions[todays_date]);
       element.occasion = occasions[todays_date];
@@ -78,7 +74,8 @@
   }
 
   $.fn.occasions = function() { 
- 
+
+    $element = $(this);
     var settings = $.extend({
       country: 'none',
       internals: false,
@@ -91,10 +88,9 @@
       return internals;
     }
 
-    loadFiles(settings);
+    var $element = $(this);
+    init(settings,$element);
 
-    return this.each(function() {
-      setElement($(this));
-    });
+    return this;
   };
 })(jQuery);
