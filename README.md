@@ -104,7 +104,7 @@ $('#logo').occasion
 ### Version 1.0.0: Skoki
 
 * Add Jasmine test suite
-* Add date date_override
+* Add date override
 * Use leading zeroes in all dates
 * Set occasion property on element
 
