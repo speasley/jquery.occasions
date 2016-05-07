@@ -1,5 +1,15 @@
 {
+  "[_nthDay(2,1,3)]":"dst-begins", /* Second Sunday of March */
   "04/20":"canadian-film",
   "04/26":"pretzel",
-	"07/01":"canada"
+  "[_nthDay(2,1,5)]":"mothers", /* Second Sunday of May */
+  "[_weekdayBefore(2,5,25)]":"victoria", /* Monday before May 25 */
+  "06/21":"aboriginal",
+  "[_nthDay(3,1,6)]":"fathers", /* Third Sunday of June */
+	"07/01":"canada",
+  "[_nthDay(1,2,9)]":"labour", /* First Monday of September */
+  "[_nthDay(2,2,10)]":"thanksgiving", /* Second Monday of October */
+  "11/01":"all-saints",
+  "[_nthDay(1,1,11)]":"dst-ends", /* First Sunday of November */
+  "12/11":"statute"
 }
