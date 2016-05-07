@@ -10,28 +10,6 @@
 
 	'use strict';
 
-  $.fn.occasions = function() { 
-
-    $element = this;
-
-    var settings = $.extend({
-      country: 'none',
-      internals: false,
-      path: '',
-      sect: 'none',
-      onSuccess: function() {}
-    }, arguments[0] || {});
-
-    if (settings.internals) {
-      return internals;
-    }
-
-    return this.each(function() {
-      init(settings,$element);
-    });
-    
-  };
-
   var $element = null;
   var occasions = null;
   
@@ -95,5 +73,27 @@
       settings.onSuccess.call(element);
     }
   }
+
+  $.fn.occasions = function() { 
+
+    $element = this;
+
+    var settings = $.extend({
+      country: 'none',
+      internals: false,
+      path: '',
+      sect: 'none',
+      onSuccess: function() {}
+    }, arguments[0] || {});
+
+    if (settings.internals) {
+      return internals;
+    }
+
+    return this.each(function() {
+      init(settings,$element);
+    });
+    
+  };
 
 })(jQuery);
