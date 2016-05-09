@@ -46,10 +46,8 @@
 		var files = ['occasions.json'];
 		var occasions = null;
 	  var settings = $.extend({
-	    country: 'none',
 	    internals: false,
 	    path: '',
-	    sect: 'none',
 	    onSuccess: function() {}
 	  }, arguments[0] || {});
 		
@@ -57,8 +55,8 @@
       return internals;
     }
 
-    if(settings.country != 'none') { files.push(settings.country.toLowerCase()+'.json'); }
-    if(settings.sect != 'none') { files.push(settings.sect.toLowerCase()+'.json'); }
+    if(settings.country) { files.push(settings.country.toLowerCase()+'.json'); }
+    if(settings.sect) { files.push(settings.sect.toLowerCase()+'.json'); }
     if(settings.path != '') { settings.path = sanitizePath(settings.path); }
     for (var i=0; i < files.length; i++) {
       $.ajax({
