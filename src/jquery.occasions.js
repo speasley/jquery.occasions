@@ -67,7 +67,6 @@
         type:'get',
         dataType:'json',
         success: function(data) {    
-          console.log(settings.path+files[i]);
           if(occasions == null) {
             occasions = data;
           }else{
@@ -82,8 +81,6 @@
       this.addClass(occasions[todays_date]);
       this.occasion = occasions[todays_date];
       settings.onSuccess.call(this);
-      console.log('execute!');
-      console.log(occasions);
     }
 		
 		return this;
