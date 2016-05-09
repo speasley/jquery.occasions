@@ -115,11 +115,17 @@ describe("Options", function() {
 
   });
 
-	describe("Custom occasion", function() {
-    it("should add my birthday to the occasions", function() {
+	describe("Custom occasions", function() {
+    it("should add one", function() {
 			$element.occasions({custom:{"02/27":"bday"},date_override:"02/27"});
 			expect($element).toHaveClass("bday");
     });
+
+    it("should add two", function() {
+			$element.occasions({custom:{"02/07":"sisters-bday","02/27":"my-bday"},date_override:"02/07"});
+			expect($element).toHaveClass("sisters-bday");
+    });
+
   });
 
 	describe("Callback", function() {
