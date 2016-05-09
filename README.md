@@ -108,13 +108,13 @@ $('#logo').occasion
 * Use leading zeroes in all dates
 * Set occasion property on element
 
-### Version 2.0.0: Heart Mountain
+### Version 2.0.0: Fort McMurray
 
-* Total rewrite with expanded test suite
-* Support multiple occasions per day
-* Support custom occasions
 * Move occasions to external files (loaded only as needed)
 * Expand default occasions
+* Total rewrite with expanded test suite
+- Support custom occasions
+- Support multiple occasions per day
 
 ##Contributing
 
