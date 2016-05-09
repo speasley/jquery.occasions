@@ -46,10 +46,10 @@ describe("Internal functions", function() {
 
   describe("mergeHashes()", function() {
     it("should merge two hashes into one", function() {
-      var a = {"fooa":"bara"};
-      var b = {"foob":"barb"};
+      var a = {"a":"b"};
+      var b = {"c":"d"};
       var internals = $element.occasions({internals:true});
-      expect(internals.mergeHashes(a,b)).toEqual({"fooa":"bara","foob":"barb"});
+      expect(internals.mergeHashes(a,b)).toEqual({"a":"b","c":"d"});
     });
   });
 
@@ -67,6 +67,11 @@ describe("Internal functions", function() {
     $element.occasions();
     var internals = $element.occasions({internals:true});
     expect(internals.timestamp("04/29") > 1459200000).toBeTruthy();
+  });
+
+  it("should add the missing trailing slash to the custom path", function() {
+    var internals = $element.occasions({internals:true});
+    expect(internals.sanitizePath("custom/path")).toEqual("custom/path/");
   });
 
 });

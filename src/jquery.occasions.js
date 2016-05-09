@@ -6,47 +6,24 @@
  * Version 2.0.0
  * Made in Canada
  */
-;(function($) {
-
+;(function ( $ ) {
+	
 	'use strict';
-
-  var $element = null;
-  var occasions = null;
-  
+	
   // internal functions
-	var internals = {}
-
-  var init = internals.init = function(settings,element) {
-    var files = ['occasions.json'];
-    if(settings.country != 'none') { files.push(settings.country.toLowerCase()+'.json'); }
-    if(settings.sect != 'none') { files.push(settings.sect.toLowerCase()+'.json'); }
-    var loaded = 0;
-    for (var i=0; i < files.length; i++) {
-      $.ajax({
-        async: true,
-        url: settings.path+files[i],
-        type:'get',
-        dataType:'json',
-        success: function(data) {    
-          if(occasions == null) {
-            occasions = data;
-          }else{
-            mergeHashes(occasions,data);
-          }
-          loaded++;
-          if(loaded===files.length) {
-            main(settings,element);
-          }
-        }
-      });
-    }
-  }
-
+	var internals = {};
+	
   var mergeHashes = internals.mergeHashes = function(obj, src) {
     Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
     return obj;
   }
-
+	
+	var timestamp = internals.timestamp = function(month,day) {
+    var today = new Date();
+    var ts = new Date(today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate()).getTime() / 1000;
+    return ts;
+  };
+	
   var todaysDate = internals.todaysDate = function(override) {
     var today = new Date();
     var now_month = today.getMonth()+1;
@@ -58,42 +35,59 @@
     return now_date;
   }
 
-	var timestamp = internals.timestamp = function(month,day) {
-    var today = new Date();
-    var ts = new Date(today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate()).getTime() / 1000;
-    return ts;
-  };
-
-  var main = internals.main = function(settings,element) {
-    var todays_date = todaysDate(settings.date_override);
-    if(occasions[todays_date]!=null) {
-      console.log(element.css({'background':'red'}));
-      element.addClass(occasions[todays_date]);
-      element.occasion = occasions[todays_date];
-      settings.onSuccess.call(element);
+  var sanitizePath = internals.sanitizePath = function(path) {
+    if(path.slice(-1) != '/') {
+      return path+'/';
     }
   }
-
-  $.fn.occasions = function() { 
-
-    $element = this;
-
-    var settings = $.extend({
-      country: 'none',
-      internals: false,
-      path: '',
-      sect: 'none',
-      onSuccess: function() {}
-    }, arguments[0] || {});
-
+	
+	// main
+	$.fn.occasions = function() {
+		
+		var files = ['occasions.json'];
+		var occasions = null;
+	  var settings = $.extend({
+	    country: 'none',
+	    internals: false,
+	    path: '',
+	    sect: 'none',
+	    onSuccess: function() {}
+	  }, arguments[0] || {});
+		
     if (settings.internals) {
       return internals;
     }
 
-    return this.each(function() {
-      init(settings,$element);
-    });
-    
-  };
-
-})(jQuery);
+    if(settings.country != 'none') { files.push(settings.country.toLowerCase()+'.json'); }
+    if(settings.sect != 'none') { files.push(settings.sect.toLowerCase()+'.json'); }
+    if(settings.path != '') { settings.path = sanitizePath(settings.path); }
+    for (var i=0; i < files.length; i++) {
+      $.ajax({
+        async: false,
+        url: settings.path+files[i],
+        type:'get',
+        dataType:'json',
+        success: function(data) {    
+          console.log(settings.path+files[i]);
+          if(occasions == null) {
+            occasions = data;
+          }else{
+            mergeHashes(occasions,data);
+          }
+        }
+      });
+    }
+		
+    var todays_date = todaysDate(settings.date_override);
+    if(occasions[todays_date]!=null) {
+      this.addClass(occasions[todays_date]);
+      this.occasion = occasions[todays_date];
+      settings.onSuccess.call(this);
+      console.log('execute!');
+      console.log(occasions);
+    }
+		
+		return this;
+		
+	};
+}( jQuery ));
