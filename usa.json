@@ -4,6 +4,7 @@
   "04/07":"beer",
   "04/12":"grilled-cheese",
   "04/26":"pretzel",
+  "[_nthDay(1,6,6)]":"donut",
   "07/04":"independence",
   "[_nthDay(4,3,11)]":"thanksgiving",
   "[_nthDay(1,1,11)]":"dst-ends",

@@ -9,6 +9,7 @@
 	"04/20":"four-twenty",
 	"04/22":"earth",
   "[_nthDay(2,1,5)]":"mothers",
+  "[_nthDay(2,7,5)]":"migratory-bird",
 	"05/04":"star-wars",
 	"05/25":"towel",
   "[_nthDay(3,1,6)]":"fathers",
