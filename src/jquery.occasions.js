@@ -36,9 +36,8 @@
   }
 
   var sanitizePath = internals.sanitizePath = function(path) {
-    if(path.slice(-1) != '/') {
-      return path+'/';
-    }
+    if(path.slice(-1) != '/') { path = path+'/'; }
+    return path;
   }
 	
 	// main

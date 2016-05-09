@@ -74,6 +74,11 @@ describe("Internal functions", function() {
     expect(internals.sanitizePath("custom/path")).toEqual("custom/path/");
   });
 
+  it("should not modify a custom path that has a trailing slash", function() {
+    var internals = $element.occasions({internals:true});
+    expect(internals.sanitizePath("custom/path/")).toEqual("custom/path/");
+  });
+
 });
 
 describe("Options", function() {
