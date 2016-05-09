@@ -69,16 +69,6 @@ describe("Internal functions", function() {
     expect(internals.timestamp("04/29") > 1459200000).toBeTruthy();
   });
 
-  it("should add the missing trailing slash to the custom path", function() {
-    var internals = $element.occasions({internals:true});
-    expect(internals.sanitizePath("custom/path")).toEqual("custom/path/");
-  });
-
-  it("should not modify a custom path that has a trailing slash", function() {
-    var internals = $element.occasions({internals:true});
-    expect(internals.sanitizePath("custom/path/")).toEqual("custom/path/");
-  });
-
 });
 
 describe("Options", function() {
@@ -110,6 +100,27 @@ describe("Options", function() {
 		});
 
 	});
+
+	describe("Path", function() {
+
+    it("should add the missing trailing slash to the custom path", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.sanitizePath("custom/path")).toEqual("custom/path/");
+    });
+
+    it("should not modify a custom path that has a trailing slash", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.sanitizePath("custom/path/")).toEqual("custom/path/");
+    });
+
+  });
+
+	describe("Custom occasion", function() {
+    it("should add my birthday to the occasions", function() {
+			$element.occasions({custom:{"02/27":"bday"},date_override:"02/27"});
+			expect($element).toHaveClass("bday");
+    });
+  });
 
 	describe("Callback", function() {
 

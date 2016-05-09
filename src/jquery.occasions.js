@@ -75,6 +75,7 @@
         }
       });
     }
+    if(settings.custom) { mergeHashes(occasions,settings.custom); }
 		
     var todays_date = todaysDate(settings.date_override);
     if(occasions[todays_date]!=null) {
