@@ -18,6 +18,11 @@
     return obj;
   }
 	
+  var specialDate = internals.specialDate = function(date) {
+    if(date.slice(0,7) == '_nthDay'){ nthDay(date.substring(7)); }
+    if(date.slice(0,7) == '_weekda'){ weekdayBefore(date.substring(14)); }
+  }
+
 	var timestamp = internals.timestamp = function(month,day) {
     var today = new Date();
     var ts = new Date(today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate()).getTime() / 1000;
@@ -33,6 +38,14 @@
       now_date = override;
     }
     return now_date;
+  }
+
+  var nthDay = internals.nthDay = function(date) {
+    console.log('nthDay: '+date);
+  }
+
+  var weekdayBefore = internals.weekdayBefore = function(date) {
+    console.log('weekdayBefore: '+date);
   }
 
   var sanitizePath = internals.sanitizePath = function(path) {
@@ -74,6 +87,13 @@
       });
     }
     if(settings.custom) { mergeHashes(occasions,settings.custom); }
+
+    Object.keys(occasions).forEach(function (key) { 
+      var value = occasions[key]
+      if(key.slice(0,1) == '_'){
+        specialDate(key);
+      }
+    });
 		
     var todays_date = todaysDate(settings.date_override);
     if(occasions[todays_date]!=null) {
