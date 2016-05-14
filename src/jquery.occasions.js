@@ -19,8 +19,17 @@
   }
 	
   var specialDate = internals.specialDate = function(date) {
-    if(date.slice(0,7) == '_nthDay'){ nthDay(date.substring(7)); }
-    if(date.slice(0,7) == '_weekda'){ weekdayBefore(date.substring(14)); }
+    var params;
+    if(date.slice(0,7) == '_nthDay'){
+      params = date.substring(7);
+      params = params.slice(1,-1)
+      nthDay(params);
+    }
+    if(date.slice(0,7) == '_weekda'){
+      params = date.substring(14);
+      params = params.slice(1,-1)
+      weekdayBefore(params);
+    }
   }
 
 	var timestamp = internals.timestamp = function(month,day) {
@@ -34,18 +43,55 @@
     var now_month = today.getMonth()+1;
     var now_day = today.getDate();
     var now_date = (now_month<10 ? '0' : '') + now_month + '/' + (now_day<10 ? '0' : '') + now_day;
-    if (override) {
-      now_date = override;
-    }
+    if (override) { now_date = override; }
     return now_date;
   }
 
-  var nthDay = internals.nthDay = function(date) {
-    console.log('nthDay: '+date);
+  var todaysFullDate = internals.todaysFullDate = function(override) {
+    var today = new Date();
+    var now_month = today.getMonth()+1;
+    var now_day = today.getDate();
+    var now_year = today.getFullYear();
+    var now_full_date = (now_month<10 ? '0' : '') + now_month + '/' + (now_day<10 ? '0' : '') + now_day + '/' + now_year;
+    if (override) { now_full_date = override; }
+    return now_full_date;
   }
 
-  var weekdayBefore = internals.weekdayBefore = function(date) {
-    console.log('weekdayBefore: '+date);
+  var nthDay = internals.nthDay = function(params) {
+    var params = params.split(','); //nth,weekday,month
+    var nth = params[0]-1;
+    var weekday = params[1]-1;
+    var month = params[2]-1;
+    var today = new Date();
+    var d = new Date(today.getFullYear(), month, 1); //1st of the target month
+    var day = 0;
+    if (d.getDay() != weekday) {
+      //first of the month is not target weekday
+      var weekday_index = d.getDay(); //weekday of the 1st of target month
+      var count = 0;
+      while (weekday_index != weekday) {
+        weekday_index++; count++;
+        if (weekday_index == 7) {
+          weekday_index = 0;
+        }
+      }
+      day += count; //first occurence of the weekday in the month
+    }
+    day += (7 * nth);
+    d = d.setDate(day); //set occasion date
+    d = new Date(d);
+    month = d.getMonth() + 1;
+    var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+    console.log(date);
+    return date;
+  }
+
+  var weekdayBefore = internals.weekdayBefore = function(params) {
+    console.log('weekdayBefore');
+    var params = params.split(','); //weekday,month,date
+    var weekday = params[0]-1;
+    var month = params[1]-1;
+    var date = params[2]-1;
   }
 
   var sanitizePath = internals.sanitizePath = function(path) {

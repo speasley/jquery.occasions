@@ -65,11 +65,39 @@ describe("Internal functions", function() {
     });
   });
 
-  describe("timestamp()", function() {
-    it("should return timestamp of date", function() {
+  describe("todaysFullDate()", function() {
+    it("should return today's full date", function() {
       $element.occasions();
       var internals = $element.occasions({internals:true});
+      var today = new Date();
+      var month = today.getMonth()+1;
+      var day = today.getDate();
+      var year = today.getFullYear();
+      var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day + '/' + year;
+      expect(internals.todaysFullDate()).toEqual(date);
+    });
+  });
+
+  describe("timestamp()", function() {
+    it("should return timestamp of date", function() {
+      var internals = $element.occasions({internals:true});
       expect(internals.timestamp("04/29") > 1459200000).toBeTruthy();
+    });
+  });
+
+  describe("nthDay()", function() {
+    it("should return second Sunday of June", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.nthDay(2,1,6)).toEqual("06/12");
+    });
+    it("should return third Tuesday of June", function() {
+    });
+    it("should return first Thursday of June", function() {
+    });
+  });
+
+  describe("weekdayBefore()", function() {
+    it("should return Monday before 02/27", function() {
     });
   });
 
