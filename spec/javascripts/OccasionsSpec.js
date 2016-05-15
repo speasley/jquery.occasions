@@ -117,7 +117,7 @@ describe("Options", function() {
 
 	describe("Date override", function() {
 
-    it("should override today's date but keep default year", function() {
+    it("should override today's date", function() {
       var internals = $element.occasions({internals:true});
       expect(internals.todaysDate("02/27")).toEqual("02/27");
     });
