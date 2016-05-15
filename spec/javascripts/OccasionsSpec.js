@@ -53,9 +53,20 @@ describe("Internal functions", function() {
     });
   });
 
+  describe("setGlobalYear()", function() {
+    it("should return today's year by default", function() {
+      var internals = $element.occasions({internals:true});
+      var year = new Date().getFullYear();
+      expect(internals.globalYear()).toEqual(year);
+    });
+    it("should return overridden year", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.globalYear("2002")).toEqual("2002");
+    });
+  });
+
   describe("todaysDate()", function() {
     it("should return today's date", function() {
-      $element.occasions();
       var internals = $element.occasions({internals:true});
       var today = new Date();
       var month = today.getMonth()+1;
@@ -67,7 +78,6 @@ describe("Internal functions", function() {
 
   describe("todaysFullDate()", function() {
     it("should return today's full date", function() {
-      $element.occasions();
       var internals = $element.occasions({internals:true});
       var today = new Date();
       var month = today.getMonth()+1;
@@ -86,24 +96,45 @@ describe("Internal functions", function() {
   });
 
   describe("nthDay()", function() {
-    it("should return second Sunday of June", function() {
-      var internals = $element.occasions({internals:true});
+    xit("should return second Sunday of June", function() {
+      var internals = $element.occasions({date_override:"06/12/2016",internals:true});
       expect(internals.nthDay(2,1,6)).toEqual("06/12");
     });
-    it("should return third Tuesday of June", function() {
+    xit("should return third Tuesday of June", function() {
     });
-    it("should return first Thursday of June", function() {
+    xit("should return first Thursday of June", function() {
     });
   });
 
   describe("weekdayBefore()", function() {
-    it("should return Monday before 02/27", function() {
+    xit("should return Monday before 02/27", function() {
     });
   });
 
 });
 
 describe("Options", function() {
+
+	describe("Date override", function() {
+
+    it("should override today's date but keep default year", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.todaysDate("02/27")).toEqual("02/27");
+    });
+
+    it("should override today's date but keep default year", function() {
+      var today = new Date();
+      var year = today.getFullYear();
+      var internals = $element.occasions({date_override:"02/27/"+year,internals:true});
+      expect(internals.todaysFullDate("02/27")).toEqual("02/27/"+year);
+    });
+
+    it("should override today's date and year", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.todaysDate("02/27/1979")).toEqual("02/27/1979");
+    });
+
+	});
 
 	describe("Country", function() {
 	

@@ -38,8 +38,15 @@
     return ts;
   };
 	
+  var globalYear = internals.globalYear = function(override) {
+    var date = new Date().getFullYear();
+    if (override) { date = override; }
+    return date;
+  }
+
   var todaysDate = internals.todaysDate = function(override) {
     var today = new Date();
+    if (override && override.length > 5) { today.setFullYear(globalYear(override.slice(6,10))); }
     var now_month = today.getMonth()+1;
     var now_day = today.getDate();
     var now_date = (now_month<10 ? '0' : '') + now_month + '/' + (now_day<10 ? '0' : '') + now_day;
@@ -49,11 +56,25 @@
 
   var todaysFullDate = internals.todaysFullDate = function(override) {
     var today = new Date();
+    if (override && override.length > 5) { today.setFullYear(globalYear(override)); }
     var now_month = today.getMonth()+1;
+    if(override){
+      if(override.slice(0,1)=='0'){
+        now_month = override.charAt(1);
+      }else{
+        now_month = override.slice(0,2);
+      }
+    }
     var now_day = today.getDate();
+    if(override){
+      if(override.slice(3,4)=='0'){
+        now_day = override.charAt(4);
+      }else{
+        now_day = override.slice(3,5);
+      }
+    }
     var now_year = today.getFullYear();
     var now_full_date = (now_month<10 ? '0' : '') + now_month + '/' + (now_day<10 ? '0' : '') + now_day + '/' + now_year;
-    if (override) { now_full_date = override; }
     return now_full_date;
   }
 
@@ -82,7 +103,6 @@
     d = new Date(d);
     month = d.getMonth() + 1;
     var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
-    console.log(date);
     return date;
   }
 
@@ -103,6 +123,7 @@
 	$.fn.occasions = function() {
 		
 		var files = ['occasions.json'];
+    var globalYear = null;
 		var occasions = null;
 	  var settings = $.extend({
 	    internals: false,
@@ -133,6 +154,9 @@
       });
     }
     if(settings.custom) { mergeHashes(occasions,settings.custom); }
+    if(settings.date_override && settings.date_override.length > 5){
+      setGlobalYear(settings.date_override.slice(6,10));
+    }
 
     Object.keys(occasions).forEach(function (key) { 
       var value = occasions[key]
