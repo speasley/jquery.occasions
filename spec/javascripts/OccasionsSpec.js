@@ -88,6 +88,20 @@ describe("Internal functions", function() {
     });
   });
 
+  describe("monthIndex()", function() {
+    it("should return the month index", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.monthIndex("Dec")).toEqual(11);
+    });
+  });
+
+  describe("weekdayIndex()", function() {
+    it("should return the weekday index", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.weekdayIndex("Sat")).toEqual(6);
+    });
+  });
+  
   describe("timestamp()", function() {
     it("should return timestamp of date", function() {
       var internals = $element.occasions({internals:true});
@@ -96,9 +110,9 @@ describe("Internal functions", function() {
   });
 
   describe("nthDay()", function() {
-    xit("should return second Sunday of June", function() {
+    it("should return second Sunday of June", function() {
       var internals = $element.occasions({date_override:"06/12/2016",internals:true});
-      expect(internals.nthDay(2,1,6)).toEqual("06/12");
+      expect(internals.nthDay("2,Sun,Jun")).toEqual("06/12"); //Father's Day
     });
     xit("should return third Tuesday of June", function() {
     });

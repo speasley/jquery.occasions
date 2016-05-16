@@ -44,6 +44,17 @@
     return date;
   }
 
+  var monthIndex = internals.monthIndex = function(m) {
+    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"
+    ];
+    return monthNames.indexOf(m);
+  }
+
+  var weekdayIndex = internals.weekdayIndex = function(d) {
+    var weekdayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    return weekdayNames.indexOf(d);
+  }
+
   var todaysDate = internals.todaysDate = function(override) {
     var today = new Date();
     if (override && override.length > 5) { today.setFullYear(globalYear(override.slice(6,10))); }
@@ -80,27 +91,25 @@
 
   var nthDay = internals.nthDay = function(params) {
     var params = params.split(','); //nth,weekday,month
-    var nth = params[0]-1;
-    var weekday = params[1]-1;
-    var month = params[2]-1;
+    var nth = params[0];
+    var weekday = weekdayIndex(params[1]);
+    var month = monthIndex(params[2]);
     var today = new Date();
-    var d = new Date(today.getFullYear(), month, 1); //1st of the target month
-    var day = 0;
-    if (d.getDay() != weekday) {
-      //first of the month is not target weekday
-      var weekday_index = d.getDay(); //weekday of the 1st of target month
-      var count = 0;
+    var day = 1; //start on the 1st of the month
+    var d = new Date(today.getFullYear(), month, day); //1st of the target month
+    //set weekday of 1st of the month
+    if (weekday != d.getDay()) {
+      //weekday is not on the 1st of the month
+      var weekday_index = d.getDay(); //weekday of 1st of the month
+      var offset = 0;
       while (weekday_index != weekday) {
-        weekday_index++; count++;
-        if (weekday_index == 7) {
-          weekday_index = 0;
-        }
+        weekday_index++; offset++;
+        if (weekday_index == 7) { weekday_index = 0; }
       }
-      day += count; //first occurence of the weekday in the month
     }
-    day += (7 * nth);
+    day = day + offset + (7 * (nth-1));
     d = d.setDate(day); //set occasion date
-    d = new Date(d);
+    d = new Date(d); //new date object with occasion date
     month = d.getMonth() + 1;
     var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
     return date;
