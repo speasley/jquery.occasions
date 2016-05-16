@@ -91,7 +91,7 @@
 
   var nthDay = internals.nthDay = function(params) {
     var params = params.split(','); //nth,weekday,month
-    var nth = params[0];
+    var nth = Number(params[0]);
     var weekday = weekdayIndex(params[1]);
     var month = monthIndex(params[2]);
     var today = new Date();
@@ -118,9 +118,9 @@
   var weekdayBefore = internals.weekdayBefore = function(params) {
     console.log('weekdayBefore');
     var params = params.split(','); //weekday,month,date
-    var weekday = params[0]-1;
-    var month = params[1]-1;
-    var date = params[2]-1;
+    var weekday = weekdayIndex(params[0]);
+    var month = monthIndex(params[1]);
+    var date = Number(params[2]);
   }
 
   var sanitizePath = internals.sanitizePath = function(path) {
