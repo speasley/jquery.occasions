@@ -112,11 +112,19 @@ describe("Internal functions", function() {
   describe("nthDay()", function() {
     it("should return second Sunday of June", function() {
       var internals = $element.occasions({date_override:"06/12/2016",internals:true});
-      expect(internals.nthDay("2,Sun,Jun")).toEqual("06/12"); //Father's Day
+      expect(internals.nthDay("2,Sun,Jun")).toEqual("06/12");
     });
-    xit("should return third Tuesday of June", function() {
+    it("should return third Tuesday of June", function() {
+      var internals = $element.occasions({date_override:"06/12/2016",internals:true});
+      expect(internals.nthDay("3,Tue,Jun")).toEqual("06/21");
     });
-    xit("should return first Thursday of June", function() {
+    it("should return first Thursday of June", function() {
+      var internals = $element.occasions({date_override:"06/12/2016",internals:true});
+      expect(internals.nthDay("1,Thu,Jun")).toEqual("06/02");
+    });
+    it("should return fourth Monday of May", function() {
+      var internals = $element.occasions({date_override:"05/12/2016",internals:true});
+      expect(internals.nthDay("4,Mon,May")).toEqual("05/23");
     });
   });
 
