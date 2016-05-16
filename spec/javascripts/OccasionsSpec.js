@@ -126,6 +126,10 @@ describe("Internal functions", function() {
       var internals = $element.occasions({date_override:"05/12/2016",internals:true});
       expect(internals.nthDay("4,Mon,May")).toEqual("05/23");
     });
+    it("should return second Saturday of May", function() {
+      var internals = $element.occasions({date_override:"05/12/2016",internals:true});
+      expect(internals.nthDay("2,Sat,May")).toEqual("05/14");
+    });
   });
 
   describe("weekdayBefore()", function() {
@@ -196,19 +200,6 @@ describe("Options", function() {
     it("should not modify a custom path that has a trailing slash", function() {
       var internals = $element.occasions({internals:true});
       expect(internals.sanitizePath("custom/path/")).toEqual("custom/path/");
-    });
-
-  });
-
-	describe("Custom occasions", function() {
-    it("should add one", function() {
-			$element.occasions({custom:{"02/27":"bday"},date_override:"02/27"});
-			expect($element).toHaveClass("bday");
-    });
-
-    it("should add two", function() {
-			$element.occasions({custom:{"02/07":"sisters-bday","02/27":"my-bday"},date_override:"02/07"});
-			expect($element).toHaveClass("sisters-bday");
     });
 
   });

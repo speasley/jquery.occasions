@@ -34,14 +34,6 @@ This will give you additional occasions specific to the provided country. 'Canad
 $('#logo').occasions({country:'canada'}); //requires canada.json
 ```
 
-###custom
-
-You can add a custom occasion by passing a simple JSON object:
-
-```
-$('#logo').occasions({custom:{"02/27":"birthday"}});
-```
-
 ###path
 
 jquery.occasions will look for its required external files in the same directory from which it is run. If you wish to store these somewhere else, you'll need to provide the filepath.
@@ -71,6 +63,11 @@ $('#logo').occasions({
 ```
 
 ##Extras
+
+###Custom occasions
+
+Custom occasions can be added by editing the occasions.json file (or one of the other json files, if
+that makes more sense). Follow the pattern there and you're be away to the races. Happy birthday!
 
 ###Date override
 

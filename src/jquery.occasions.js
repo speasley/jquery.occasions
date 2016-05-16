@@ -162,7 +162,6 @@
         }
       });
     }
-    if(settings.custom) { mergeHashes(occasions,settings.custom); }
     if(settings.date_override && settings.date_override.length > 5){
       setGlobalYear(settings.date_override.slice(6,10));
     }
