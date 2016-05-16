@@ -52,10 +52,10 @@ $('#logo').occasions({path:'../my/file/path'});
 
 ###sect
 
-This will give you additional occasions specific to the provided religious sect. 'Christian' and 'Pasta' are provided.
+This will give you additional occasions specific to the provided religious sect. 'Christian' is provided.
 
 ```
-$('#logo').occasions({sect:'pasta'}); //requires pasta.json
+$('#logo').occasions({sect:'christian'}); //requires christian.json
 ```
 
 ###onSuccess callback
@@ -70,7 +70,7 @@ $('#logo').occasions({
 });
 ```
 
-##Testing
+##Extras
 
 ###Date override
 
