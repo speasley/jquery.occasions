@@ -34,7 +34,7 @@
 
 	var timestamp = internals.timestamp = function(month,day) {
     var today = new Date();
-    var ts = new Date(today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate()).getTime() / 1000;
+    var ts = new Date(globalYear()+'-'+month+'-'+day).getTime() / 1000;
     return ts;
   };
 	
@@ -116,11 +116,23 @@
   }
 
   var weekdayBefore = internals.weekdayBefore = function(params) {
-    console.log('weekdayBefore');
     var params = params.split(','); //weekday,month,date
     var weekday = weekdayIndex(params[0]);
     var month = monthIndex(params[1]);
     var date = Number(params[2]);
+    var today = new Date();
+    var d = new Date(globalYear(), month, date);
+    if(params == "Mon,Feb,27") { console.log(month+1,date); }
+    if(params == "Mon,Feb,27") { console.log(timestamp(month+1,date)); }
+    if (d.getDay() == weekday) {
+      day -= 7;
+    }else{
+
+    }
+    /*
+    if(params == "Mon,Feb,27") { console.log(date); }
+    return date;
+    */
   }
 
   var sanitizePath = internals.sanitizePath = function(path) {

@@ -104,8 +104,8 @@ describe("Internal functions", function() {
   
   describe("timestamp()", function() {
     it("should return timestamp of date", function() {
-      var internals = $element.occasions({internals:true});
-      expect(internals.timestamp("04/29") > 1459200000).toBeTruthy();
+      var internals = $element.occasions({date_override:"04/29/2016",internals:true});
+      expect(internals.timestamp(3,29)).toEqual(1459231200);
     });
   });
 
@@ -133,9 +133,13 @@ describe("Internal functions", function() {
   });
 
   describe("weekdayBefore()", function() {
-    it("should return Monday before 02/27", function() {
+    xit("should return Monday before 02/27", function() {
       var internals = $element.occasions({date_override:"05/12/2016",internals:true});
       expect(internals.weekdayBefore("Mon,Feb,27")).toEqual("02/22");
+    });
+    xit("should return Saturday before 04/02", function() {
+      var internals = $element.occasions({date_override:"05/12/2016",internals:true});
+      expect(internals.weekdayBefore("Sat,May,02")).toEqual("04/30");
     });
   });
 
