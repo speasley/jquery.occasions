@@ -149,7 +149,7 @@ describe("Internal functions", function() {
   });
 
   describe("weekdayBefore()", function() {
-    xit("should return Monday before 02/27", function() {
+    it("should return Monday before Feb 27", function() {
       var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
       expect(internals.weekdayBefore("Mon,Feb,27")).toEqual("Feb 22");
     });
