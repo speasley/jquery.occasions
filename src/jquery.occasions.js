@@ -50,42 +50,49 @@
     return monthNames.indexOf(m);
   }
 
+  var monthName = internals.monthName = function(m) {
+    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"
+    ];
+    return monthNames[m];
+  }
+
   var weekdayIndex = internals.weekdayIndex = function(d) {
     var weekdayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
     return weekdayNames.indexOf(d);
   }
 
+  var weekdayName = internals.weekdayName = function(d) {
+    var weekdayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    return weekdayNames[d];
+  }
+
   var todaysDate = internals.todaysDate = function(override) {
     var today = new Date();
     if (override && override.length > 5) { today.setFullYear(globalYear(override.slice(6,10))); }
-    var now_month = today.getMonth()+1;
+    var now_month = today.getMonth();
     var now_day = today.getDate();
-    var now_date = (now_month<10 ? '0' : '') + now_month + '/' + (now_day<10 ? '0' : '') + now_day;
+    var now_date = monthName(now_month) + ' ' + (now_day<10 ? '0' : '') + now_day;
     if (override) { now_date = override; }
     return now_date;
   }
 
   var todaysFullDate = internals.todaysFullDate = function(override) {
     var today = new Date();
-    if (override && override.length > 5) { today.setFullYear(globalYear(override)); }
-    var now_month = today.getMonth()+1;
+    if (override && override.length > 6) { today.setFullYear(globalYear(override)); }
+    var now_month = monthName(today.getMonth());
     if(override){
-      if(override.slice(0,1)=='0'){
-        now_month = override.charAt(1);
-      }else{
-        now_month = override.slice(0,2);
-      }
+      now_month = override.slice(0,3);
     }
     var now_day = today.getDate();
     if(override){
-      if(override.slice(3,4)=='0'){
-        now_day = override.charAt(4);
+      if(override.slice(4,5)=='0'){
+        now_day = override.charAt(5);
       }else{
-        now_day = override.slice(3,5);
+        now_day = override.slice(4,6);
       }
     }
     var now_year = today.getFullYear();
-    var now_full_date = (now_month<10 ? '0' : '') + now_month + '/' + (now_day<10 ? '0' : '') + now_day + '/' + now_year;
+    var now_full_date = now_month + ' ' + (now_day<10 ? '0' : '') + now_day + ', ' + now_year;
     return now_full_date;
   }
 
@@ -110,8 +117,8 @@
     day = day + offset + (7 * (nth-1));
     d = d.setDate(day); //set occasion date
     d = new Date(d); //new date object with occasion date
-    month = d.getMonth() + 1;
-    var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+    month = d.getMonth();
+    var date = monthName(month) + ' ' + (day<10 ? '0' : '') + day;
     return date;
   }
 
@@ -174,8 +181,8 @@
         }
       });
     }
-    if(settings.date_override && settings.date_override.length > 5){
-      setGlobalYear(settings.date_override.slice(6,10));
+    if(settings.date_override && settings.date_override.length > 6){
+      setGlobalYear(settings.date_override.slice(-4));
     }
 
     Object.keys(occasions).forEach(function (key) { 

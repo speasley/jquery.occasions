@@ -26,17 +26,17 @@ describe("Sample element", function() {
 	});
 	
 	it("should not have a class if today is not an occasion", function() {
-		$element.occasions({date_override:"01/23"});
+		$element.occasions({date_override:"Jan 23"});
 		expect($element).not.toHaveAttr("class");
 	});
 	
 	it("should have a class if 'today' is an occasion", function() {
-		$element.occasions({date_override:"01/21"});
+		$element.occasions({date_override:"Jan 21"});
 		expect($element).toHaveClass("hug");
 	});
 	
 	it("should provide you with today's occasion", function() {
-		$element.occasions({date_override:"01/21"});
+		$element.occasions({date_override:"Jan 21"});
 		expect($element.occasion).toEqual("hug");
 	});
 	
@@ -69,9 +69,10 @@ describe("Internal functions", function() {
     it("should return today's date", function() {
       var internals = $element.occasions({internals:true});
       var today = new Date();
-      var month = today.getMonth()+1;
+      var month = today.getMonth();
+      var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"];
       var day = today.getDate();
-      var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+      var date = monthNames[month] + ' ' + (day<10 ? '0' : '') + day;
       expect(internals.todaysDate()).toEqual(date);
     });
   });
@@ -80,10 +81,11 @@ describe("Internal functions", function() {
     it("should return today's full date", function() {
       var internals = $element.occasions({internals:true});
       var today = new Date();
-      var month = today.getMonth()+1;
+      var month = today.getMonth();
+      var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"];
       var day = today.getDate();
       var year = today.getFullYear();
-      var date = (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day + '/' + year;
+      var date = monthNames[month] + ' ' + (day<10 ? '0' : '') + day + ', ' + year;
       expect(internals.todaysFullDate()).toEqual(date);
     });
   });
@@ -95,6 +97,13 @@ describe("Internal functions", function() {
     });
   });
 
+  describe("monthName()", function() {
+    it("should return the month name", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.monthName(11)).toEqual("Dec");
+    });
+  });
+  
   describe("weekdayIndex()", function() {
     it("should return the weekday index", function() {
       var internals = $element.occasions({internals:true});
@@ -102,44 +111,51 @@ describe("Internal functions", function() {
     });
   });
   
+  describe("weekdayName()", function() {
+    it("should return the weekday name", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.weekdayName(6)).toEqual("Sat");
+    });
+  });
+  
   describe("timestamp()", function() {
     it("should return timestamp of date", function() {
-      var internals = $element.occasions({date_override:"04/29/2016",internals:true});
+      var internals = $element.occasions({date_override:"Jan 29",internals:true});
       expect(internals.timestamp(3,29)).toEqual(1459231200);
     });
   });
 
   describe("nthDay()", function() {
     it("should return second Sunday of June", function() {
-      var internals = $element.occasions({date_override:"06/12/2016",internals:true});
-      expect(internals.nthDay("2,Sun,Jun")).toEqual("06/12");
+      var internals = $element.occasions({date_override:"Jun 12, 2016",internals:true});
+      expect(internals.nthDay("2,Sun,Jun")).toEqual("Jun 12");
     });
     it("should return third Tuesday of June", function() {
-      var internals = $element.occasions({date_override:"06/12/2016",internals:true});
-      expect(internals.nthDay("3,Tue,Jun")).toEqual("06/21");
+      var internals = $element.occasions({date_override:"Jun 12, 2016",internals:true});
+      expect(internals.nthDay("3,Tue,Jun")).toEqual("Jun 21");
     });
     it("should return first Thursday of June", function() {
-      var internals = $element.occasions({date_override:"06/12/2016",internals:true});
-      expect(internals.nthDay("1,Thu,Jun")).toEqual("06/02");
+      var internals = $element.occasions({date_override:"Jun 12, 2016",internals:true});
+      expect(internals.nthDay("1,Thu,Jun")).toEqual("Jun 02");
     });
     it("should return fourth Monday of May", function() {
-      var internals = $element.occasions({date_override:"05/12/2016",internals:true});
-      expect(internals.nthDay("4,Mon,May")).toEqual("05/23");
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.nthDay("4,Mon,May")).toEqual("May 23");
     });
     it("should return second Saturday of May", function() {
-      var internals = $element.occasions({date_override:"05/12/2016",internals:true});
-      expect(internals.nthDay("2,Sat,May")).toEqual("05/14");
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.nthDay("2,Sat,May")).toEqual("May 14");
     });
   });
 
   describe("weekdayBefore()", function() {
     xit("should return Monday before 02/27", function() {
-      var internals = $element.occasions({date_override:"05/12/2016",internals:true});
-      expect(internals.weekdayBefore("Mon,Feb,27")).toEqual("02/22");
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.weekdayBefore("Mon,Feb,27")).toEqual("Feb 22");
     });
     xit("should return Saturday before 04/02", function() {
-      var internals = $element.occasions({date_override:"05/12/2016",internals:true});
-      expect(internals.weekdayBefore("Sat,May,02")).toEqual("04/30");
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.weekdayBefore("Sat,May,02")).toEqual("Apr 30");
     });
   });
 
@@ -151,19 +167,19 @@ describe("Options", function() {
 
     it("should override today's date", function() {
       var internals = $element.occasions({internals:true});
-      expect(internals.todaysDate("02/27")).toEqual("02/27");
+      expect(internals.todaysDate("Feb 27")).toEqual("Feb 27");
     });
 
     it("should override today's date but keep default year", function() {
       var today = new Date();
       var year = today.getFullYear();
-      var internals = $element.occasions({date_override:"02/27/"+year,internals:true});
-      expect(internals.todaysFullDate("02/27")).toEqual("02/27/"+year);
+      var internals = $element.occasions({date_override:"Feb 27, "+year,internals:true});
+      expect(internals.todaysFullDate("Feb 27")).toEqual("Feb 27, "+year);
     });
 
     it("should override today's date and year", function() {
       var internals = $element.occasions({internals:true});
-      expect(internals.todaysDate("02/27/1979")).toEqual("02/27/1979");
+      expect(internals.todaysDate("Feb 27, 1979")).toEqual("Feb 27, 1979");
     });
 
 	});
@@ -171,12 +187,12 @@ describe("Options", function() {
 	describe("Country", function() {
 	
 		it("should not add 'aboriginal' class as a default", function() {
-			$element.occasions({date_override:"06/21"});
+			$element.occasions({date_override:"Jun 21"});
 			expect($element).not.toHaveClass("aboriginal");
 		});
 	
 		it("should add 'aboriginal' class with country option set", function() {
-			$element.occasions({date_override:"06/21",country:"canada"});
+			$element.occasions({date_override:"Jun 21",country:"canada"});
 			expect($element).toHaveClass("aboriginal");
 		});
 
@@ -185,12 +201,12 @@ describe("Options", function() {
 	describe("Sect", function() {
 	
 		it("should not add 'christmas' class as a default", function() {
-			$element.occasions({date_override:"12/25"});
+			$element.occasions({date_override:"Dec 25"});
 			expect($element).not.toHaveClass("christmas");
 		});
 	
 		it("should add 'christmas' class with sect option set", function() {
-			$element.occasions({date_override:"12/25",sect:"christian"});
+			$element.occasions({date_override:"Dec 25",sect:"christian"});
 			expect($element).toHaveClass("christmas");
 		});
 
@@ -215,7 +231,7 @@ describe("Options", function() {
 		it("should execute the callback code", function() {
 			var testVar = "foo"
 			$element.occasions({
-				date_override:"05/04",
+				date_override:"May 04",
 				onSuccess: function() {
 					testVar = "bar"
 				}
