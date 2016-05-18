@@ -1,11 +1,11 @@
 {
   "_nthDay(1,Sun,Feb)":"superbowl",
   "_nthDay(2,Sun,Mar)":"dst-begins",
-  "04/07":"beer",
-  "04/12":"grilled-cheese",
-  "04/26":"pretzel",
+  "Apr 07":"beer",
+  "Apr 12":"grilled-cheese",
+  "Apr 26":"pretzel",
   "_nthDay(1,Sat,Jun)":"donut",
-  "07/04":"independence",
+  "Jul 04":"independence",
   "_nthDay(4,Tue,Nov)":"thanksgiving",
   "_nthDay(1,Sun,Nov)":"dst-ends",
 }
