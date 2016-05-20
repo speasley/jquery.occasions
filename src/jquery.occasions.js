@@ -33,15 +33,18 @@
   }
 
 	var timestamp = internals.timestamp = function(month,day) {
-    var today = new Date();
-    var ts = new Date(globalYear()+'-'+month+'-'+day).getTime() / 1000;
+    var ts = new Date(globalYear(),month,day).getTime() / 1000;
     return ts;
   };
 	
   var globalYear = internals.globalYear = function(override) {
-    var date = new Date().getFullYear();
-    if (override) { date = override; }
-    return date;
+    var year = new Date().getFullYear();
+    var override_year = null;
+    if (override > 6) {
+      override_year = override.slice(-4);
+      year = override;
+    }
+    return year;
   }
 
   var monthIndex = internals.monthIndex = function(m) {
@@ -68,7 +71,7 @@
 
   var todaysDate = internals.todaysDate = function(override) {
     var today = new Date();
-    if (override && override.length > 5) { today.setFullYear(globalYear(override.slice(6,10))); }
+    if (override && override.length > 5) { today.setFullYear(globalYear(override.slice(-4))); }
     var now_month = today.getMonth();
     var now_day = today.getDate();
     var now_date = monthName(now_month) + ' ' + (now_day<10 ? '0' : '') + now_day;
@@ -103,7 +106,7 @@
     var month = monthIndex(params[2]);
     var today = new Date();
     var day = 1; //start on the 1st of the month
-    var d = new Date(today.getFullYear(), month, day); //1st of the target month
+    var d = new Date(globalYear(), month, day); //1st of the target month
     //set weekday of 1st of the month
     if (weekday != d.getDay()) {
       //weekday is not on the 1st of the month
@@ -126,20 +129,26 @@
     var params = params.split(','); //weekday,month,date
     var weekday = weekdayIndex(params[0]);
     var month = monthIndex(params[1]);
-    var date = Number(params[2]);
+    var day = Number(params[2]);
     var today = new Date();
-    var d = new Date(globalYear(), month, date);
-    if(params == "Mon,Feb,27") { console.log(month+1,date); }
-    if(params == "Mon,Feb,27") { console.log(timestamp(month+1,date)); }
+    var d = new Date(globalYear(),month,day);
+    var date;
     if (d.getDay() == weekday) {
-      day -= 7;
+      date = timestamp(month,day) - 604800; //minus seven days
     }else{
-
+      var offset = 0;
+      var weekday_index = d.getDay(); //weekday of the reference date
+      while (weekday_index != weekday) {
+        weekday_index--; offset++;
+        if (weekday_index == -1) { weekday_index = 6; }
+      }
+      date = timestamp(month,day) - (86400 * offset);
+      date = new Date(date*1000);
+      month = monthName(date.getMonth());
+      day = (date.getDate() < 10) ? '0'+date.getDate() : date.getDate();
+      var new_date = month+' '+day;
     }
-    /*
-    if(params == "Mon,Feb,27") { console.log(date); }
-    return date;
-    */
+    return new_date;
   }
 
   var sanitizePath = internals.sanitizePath = function(path) {
@@ -151,7 +160,6 @@
 	$.fn.occasions = function() {
 		
 		var files = ['occasions.json'];
-    var globalYear = null;
 		var occasions = null;
 	  var settings = $.extend({
 	    internals: false,
@@ -180,9 +188,6 @@
           }
         }
       });
-    }
-    if(settings.date_override && settings.date_override.length > 6){
-      setGlobalYear(settings.date_override.slice(-4));
     }
 
     Object.keys(occasions).forEach(function (key) { 
