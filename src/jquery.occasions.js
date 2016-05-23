@@ -13,6 +13,15 @@
   // internal functions
 	var internals = {};
 	
+  var renameKey = internals.renameKey = function(hash, oldName, newName) {
+    if (oldName == newName) { return hash; }
+    if (hash.hasOwnProperty(oldName)) {
+      hash[newName] = hash[oldName];
+      delete hash[oldName];
+    }
+    return hash;
+  }
+	
   var mergeHashes = internals.mergeHashes = function(obj, src) {
     Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
     return obj;
@@ -173,12 +182,12 @@
     Object.keys(occasions).forEach(function (key) { 
       var value = occasions[key]
       if(key.slice(0,1) == '_'){
+        //replace key with special date result
         specialDate(key);
       }
     });
 		
     var todays_date = todaysDate(settings.date_override);
-    console.log(todaysDate(settings.date_override));
     if(occasions[todays_date]!=null) {
       this.addClass(occasions[todays_date]);
       this.occasion = occasions[todays_date];

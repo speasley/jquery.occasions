@@ -49,6 +49,14 @@ describe("Sample element", function() {
 
 describe("Internal functions", function() {
 
+  describe("renameKey()", function() {
+    it("should rename hash key", function() {
+      var hash = {"key":"value"};
+      var internals = $element.occasions({internals:true});
+      expect(internals.renameKey(hash,"key","newkey")).toEqual({"newkey":"value"});
+    });
+  });
+
   describe("mergeHashes()", function() {
     it("should merge two hashes into one", function() {
       var a = {"a":"b"};
