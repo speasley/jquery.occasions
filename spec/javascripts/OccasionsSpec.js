@@ -82,19 +82,6 @@ describe("Internal functions", function() {
     });
   });
 
-  describe("todaysFullDate()", function() {
-    it("should return today's full date", function() {
-      var internals = $element.occasions({internals:true});
-      var today = new Date();
-      var month = today.getMonth();
-      var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"];
-      var day = today.getDate();
-      var year = today.getFullYear();
-      var date = monthNames[month] + ' ' + (day<10 ? '0' : '') + day + ', ' + year;
-      expect(internals.todaysFullDate()).toEqual(date);
-    });
-  });
-
   describe("monthIndex()", function() {
     it("should return the month index", function() {
       var internals = $element.occasions({internals:true});
@@ -177,13 +164,6 @@ describe("Options", function() {
     it("should override today's date", function() {
       var internals = $element.occasions({internals:true});
       expect(internals.todaysDate("Feb 27")).toEqual("Feb 27");
-    });
-
-    it("should override today's date but keep default year", function() {
-      var today = new Date();
-      var year = today.getFullYear();
-      var internals = $element.occasions({date_override:"Feb 27, "+year,internals:true});
-      expect(internals.todaysFullDate("Feb 27")).toEqual("Feb 27, "+year);
     });
 
     it("should override today's date and year", function() {

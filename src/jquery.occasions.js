@@ -79,26 +79,6 @@
     return now_date;
   }
 
-  var todaysFullDate = internals.todaysFullDate = function(override) {
-    var today = new Date();
-    if (override && override.length > 6) { today.setFullYear(globalYear(override)); }
-    var now_month = monthName(today.getMonth());
-    if(override){
-      now_month = override.slice(0,3);
-    }
-    var now_day = today.getDate();
-    if(override){
-      if(override.slice(4,5)=='0'){
-        now_day = override.charAt(5);
-      }else{
-        now_day = override.slice(4,6);
-      }
-    }
-    var now_year = today.getFullYear();
-    var now_full_date = now_month + ' ' + (now_day<10 ? '0' : '') + now_day + ', ' + now_year;
-    return now_full_date;
-  }
-
   var nthDay = internals.nthDay = function(params) {
     var params = params.split(','); //nth,weekday,month
     var nth = Number(params[0]);
@@ -198,6 +178,7 @@
     });
 		
     var todays_date = todaysDate(settings.date_override);
+    console.log(todaysDate(settings.date_override));
     if(occasions[todays_date]!=null) {
       this.addClass(occasions[todays_date]);
       this.occasion = occasions[todays_date];
