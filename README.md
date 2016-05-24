@@ -97,7 +97,7 @@ $('#logo').occasions({
 });
 ```
 
-###Notes
+##Notes
 
 ###Occasion priority
 
