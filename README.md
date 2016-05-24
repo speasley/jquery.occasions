@@ -136,9 +136,10 @@ this, you can simply delete the troublesome line from the associated json file.
 
 ### Version 2.0.0: Fort McMurray
 
-* Move occasions to external files (loaded only as needed)
-* Expand default occasions
 * Total rewrite with expanded test suite
+* Move occasions to external files (loaded only as needed)
+* Change date format
+* Expand default occasions
 
 ##Contributing
 
