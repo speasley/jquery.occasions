@@ -106,6 +106,11 @@ Only one occasion is intended for a single day. If you use an option to include 
 those occasions will override the defaults in the event of a date overlap. If you need to avoid
 this, you can simply delete the troublesome line from the associated json file.
 
+### Optimization
+
+If you want to trim some overhead, you can edit the css and json files to remove occasions you don't
+need.
+
 ## Change Log
 
 ### Version 0.0.1: Tunnel Mountain
