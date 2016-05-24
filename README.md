@@ -4,11 +4,11 @@ jquery.occasions is a [jQuery](http://www.jquery.com/) plugin that tags an eleme
 
 Minified version size: ~4kb
 
-##Installation
+## Installation
 
 Include `jquery.occasions.js` (or `jquery.occasions.min.js`) and `occasions.json` in your project.
 
-##Basic usage
+## Basic usage
 
 Call jquery.occasions on the element you want tagged with special occasions:
 
@@ -24,9 +24,9 @@ On May the 4th, this will result in:
 
 In your CSS, define the styles of the occasions that you wish to make use of. You are provided with default style stubs in `jquery.occasions.css`. You may ignore the occasions that you do not want to use but their class names will still be added to your element.
 
-##Options
+## Options
 
-###country
+### country
 
 This will give you additional occasions specific to the provided country. 'Canada' and 'USA' are provided. Pals.
 
@@ -34,7 +34,7 @@ This will give you additional occasions specific to the provided country. 'Canad
 $('#logo').occasions({country:'canada'}); //requires canada.json
 ```
 
-###path
+### path
 
 jquery.occasions will look for its required external files in the same directory from which it is run. If you wish to store these somewhere else, you'll need to provide the filepath.
 
@@ -42,7 +42,7 @@ jquery.occasions will look for its required external files in the same directory
 $('#logo').occasions({path:'../my/file/path'});
 ```
 
-###sect
+### sect
 
 This will give you additional occasions specific to the provided religious sect. 'Christian' is provided.
 
@@ -50,7 +50,7 @@ This will give you additional occasions specific to the provided religious sect.
 $('#logo').occasions({sect:'christian'}); //requires christian.json
 ```
 
-###onSuccess callback
+### onSuccess callback
 
 When jquery.occasions adds a class to your element, code inside the `onSuccess` callback will be executed.
 
@@ -62,14 +62,14 @@ $('#logo').occasions({
 });
 ```
 
-##Extras
+## Extras
 
-###Custom occasions
+### Custom occasions
 
 Custom occasions can be added by editing the occasions.json file (or one of the other json files, if
 that makes more sense). Follow the pattern there and you're be away to the races. Happy birthday!
 
-###Date override
+### Date override
 
 You can simulate an occasion by passing in the date you wish to test:
 
@@ -77,7 +77,7 @@ You can simulate an occasion by passing in the date you wish to test:
 $('#logo').occasions({date_override:'May 04'});
 ```
 
-###Current occasion
+### Current occasion
 
 You can retrieve the current occasion that is attached to your element with:
 
@@ -85,8 +85,9 @@ You can retrieve the current occasion that is attached to your element with:
 $('#logo').occasion
 ```
 
-##Advanced usage
+## Advanced usage
 
+### Example
 ```
 $('#logo').occasions({
   onSuccess: function() {
@@ -97,9 +98,9 @@ $('#logo').occasions({
 });
 ```
 
-##Notes
+## Notes
 
-###Occasion priority
+### Occasion priority
 
 Only one occasion is intended for a single day. If you use an option to include more occasions,
 those occasions will override the defaults in the event of a date overlap. If you need to avoid
