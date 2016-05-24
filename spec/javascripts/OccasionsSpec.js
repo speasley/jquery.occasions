@@ -7,10 +7,12 @@ beforeEach(function() {
 
 
 describe("occasions", function() {
+
   it('should be chainable', function() {
     $element.occasions().addClass('other');
     expect($element.hasClass('other')).toBeTruthy();
 	});
+
 });
 
 describe("Sample element", function() {
@@ -35,16 +37,16 @@ describe("Sample element", function() {
 		expect($element).toHaveClass("hug");
 	});
 	
-	it("should provide you with today's occasion", function() {
-		$element.occasions({date_override:"Jan 21, 2014"});
-		expect($element.occasion).toEqual("victoria"); //May 19, 2014
+	it("should provide you with the Victoria Day 2014 occasion", function() {
+		$element.occasions({date_override:"May 19, 2014",country:"canada"});
+		expect($element.occasion).toEqual("victoria");
 	});
 
-  it("should return Friday before Dec 07", function() {
-    $element.occasions({date_override:"Dec 01, 2012"});
-    expect($element.occasion).toEqual();
-  });
-	
+	it("should provide you with the Victoria Day 2011 occasion", function() {
+		$element.occasions({date_override:"May 23, 2011",country:"canada"});
+		expect($element.occasion).toEqual("victoria");
+	});
+
 });
 
 describe("Internal functions", function() {
@@ -121,7 +123,11 @@ describe("Internal functions", function() {
   describe("timestamp()", function() {
     it("should return timestamp of date", function() {
       var internals = $element.occasions({date_override:"Jan 29, 2016",internals:true});
-      expect(internals.timestamp(3,29)).toEqual(1461909600);
+      expect(internals.timestamp(3,29,2016)).toEqual(1461909600);
+    });
+    it("should return timestamp of another date", function() {
+      var internals = $element.occasions({date_override:"Feb 27, 1979",internals:true});
+      expect(internals.timestamp(1,27,1979)).toEqual(288946800);
     });
   });
 
@@ -145,21 +151,6 @@ describe("Internal functions", function() {
     it("should return second Saturday of May", function() {
       var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
       expect(internals.nthDay("2,Sat,May")).toEqual("May 14");
-    });
-  });
-
-  describe("weekdayBefore()", function() {
-    it("should return Monday before Feb 27", function() {
-      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
-      expect(internals.weekdayBefore("Mon,Feb,27")).toEqual("Feb 22");
-    });
-    it("should return Monday before May 25", function() {
-      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
-      expect(internals.weekdayBefore("Mon,May,25")).toEqual("May 23");
-    });
-    it("should return Friday before Dec 07", function() {
-      var internals = $element.occasions({date_override:"Dec 01, 2012",internals:true});
-      expect(internals.weekdayBefore("Fri,Dec,07")).toEqual("Nov 30");
     });
   });
 

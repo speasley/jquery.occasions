@@ -74,7 +74,7 @@ that makes more sense). Follow the pattern there and you're be away to the races
 You can simulate an occasion by passing in the date you wish to test:
 
 ```
-$('#logo').occasions({date_override:'05/04'});
+$('#logo').occasions({date_override:'May 04'});
 ```
 
 ###Current occasion
@@ -118,7 +118,6 @@ $('#logo').occasion
 * Move occasions to external files (loaded only as needed)
 * Expand default occasions
 * Total rewrite with expanded test suite
-- Support custom occasions
 - Support multiple occasions per day
 
 ##Contributing

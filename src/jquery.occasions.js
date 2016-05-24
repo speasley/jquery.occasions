@@ -27,22 +27,24 @@
     return obj;
   }
 	
-  var specialDate = internals.specialDate = function(date) {
+  var specialDate = internals.specialDate = function(date,override) {
     var params;
+    var new_date;
     if(date.slice(0,7) == '_nthDay'){
       params = date.substring(7);
       params = params.slice(1,-1)
-      nthDay(params);
+      new_date = nthDay(params,override);
     }
     if(date.slice(0,7) == '_weekda'){
       params = date.substring(14);
       params = params.slice(1,-1)
-      weekdayBefore(params);
+      new_date = weekdayBefore(params,override);
     }
+    return new_date;
   }
 
-	var timestamp = internals.timestamp = function(month,day) {
-    var ts = new Date(globalYear(),month,day).getTime() / 1000;
+	var timestamp = internals.timestamp = function(month,day,year) {
+    var ts = new Date(year,month,day).getTime() / 1000;
     return ts;
   };
 	
@@ -88,19 +90,21 @@
     return now_date;
   }
 
-  var nthDay = internals.nthDay = function(params) {
+  var nthDay = internals.nthDay = function(params,override) {
     var params = params.split(','); //nth,weekday,month
     var nth = Number(params[0]);
     var weekday = weekdayIndex(params[1]);
     var month = monthIndex(params[2]);
     var today = new Date();
+    var year = today.getFullYear();
+    if(override && override.length > 6) { year = override.slice(-4); }
     var day = 1; //start on the 1st of the month
-    var d = new Date(globalYear(), month, day); //1st of the target month
+    var d = new Date(year, month, day); //1st of the target month
     //set weekday of 1st of the month
+    var offset = 0;
     if (weekday != d.getDay()) {
       //weekday is not on the 1st of the month
       var weekday_index = d.getDay(); //weekday of 1st of the month
-      var offset = 0;
       while (weekday_index != weekday) {
         weekday_index++; offset++;
         if (weekday_index == 7) { weekday_index = 0; }
@@ -114,16 +118,18 @@
     return date;
   }
 
-  var weekdayBefore = internals.weekdayBefore = function(params) {
+  var weekdayBefore = internals.weekdayBefore = function(params,override) {
     var params = params.split(','); //weekday,month,date
     var weekday = weekdayIndex(params[0]);
     var month = monthIndex(params[1]);
     var day = Number(params[2]);
     var today = new Date();
-    var d = new Date(globalYear(),month,day);
+    var year = today.getFullYear();
+    if(override && override.length > 6) { year = override.slice(-4); }
+    var d = new Date(year,month,day);
     var date;
     if (d.getDay() == weekday) {
-      date = timestamp(month,day) - 604800; //minus seven days
+      date = timestamp(month,day,year) - 604800; //minus seven days
     }else{
       var offset = 0;
       var weekday_index = d.getDay(); //weekday of the reference date
@@ -131,7 +137,7 @@
         weekday_index--; offset++;
         if (weekday_index == -1) { weekday_index = 6; }
       }
-      date = timestamp(month,day) - (86400 * offset);
+      date = timestamp(month,day,year) - (86400 * offset);
       date = new Date(date*1000);
       month = monthName(date.getMonth());
       day = (date.getDate() < 10) ? '0'+date.getDate() : date.getDate();
@@ -183,11 +189,11 @@
       var value = occasions[key]
       if(key.slice(0,1) == '_'){
         //replace key with special date result
-        specialDate(key);
+        occasions = renameKey(occasions,key,specialDate(key,settings.date_override));
       }
     });
 		
-    var todays_date = todaysDate(settings.date_override);
+    var todays_date = todaysDate(settings.date_override).slice(0,6);
     if(occasions[todays_date]!=null) {
       this.addClass(occasions[todays_date]);
       this.occasion = occasions[todays_date];
