@@ -85,6 +85,14 @@ You can retrieve the current occasion that is attached to your element with:
 $('#logo').occasion
 ```
 
+###Notes
+
+###Occasion priority
+
+Only one occasion is intended for a single day. If you use an option to include more occasions,
+those occasions will override the defaults in the event of a date overlap. If you need to avoid
+this, you can simply delete the troublesome line from the associated json file.
+
 ## Change Log
 
 ### Version 0.0.1: Tunnel Mountain
@@ -118,7 +126,6 @@ $('#logo').occasion
 * Move occasions to external files (loaded only as needed)
 * Expand default occasions
 * Total rewrite with expanded test suite
-- Support multiple occasions per day
 
 ##Contributing
 
