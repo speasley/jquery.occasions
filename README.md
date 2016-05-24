@@ -104,7 +104,7 @@ $('#logo').occasions({
 
 Only one occasion is intended for a single day. If you use an option to include more occasions,
 those occasions will override the defaults in the event of a date overlap. If you need to avoid
-this, you can simply delete the troublesome line from the associated json file.
+this, you can simply delete the troublesome line(s) from the associated json file.
 
 ### Optimization
 
