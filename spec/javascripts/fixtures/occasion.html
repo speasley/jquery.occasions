@@ -4,12 +4,18 @@
   <head>
     <script src="../../../lib/jquery-2.1.3.min.js"></script>
     <script src="../../../src/jquery.occasions.js"></script>
-    <script>
-      $("#logo").occasions({date_override:"01/21",path:"../../../"});
-    </script>
   </head>
   <body>
     <h1 id="logo"><a href="/">Logo</a></h1>
   </body>
+  <script>
+    $("#logo").occasions({
+      date_override:"Jan 21",
+      path:"../../../",
+      onSuccess: function() {
+        console.log('success');
+      }
+    });
+  </script>
 </html>
 -->

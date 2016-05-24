@@ -91,7 +91,7 @@ $('#logo').occasion
 ```
 $('#logo').occasions({
   onSuccess: function() {
-    if($('#logo')occasion=='star-wars') {
+    if($('#logo').occasion=='star-wars') {
       alert('May the Fourth be with you.);
     }
   }

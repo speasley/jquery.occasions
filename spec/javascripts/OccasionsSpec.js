@@ -229,4 +229,13 @@ describe("Options", function() {
 		
 	});
 
+	describe("Occasion property", function() {
+
+		it("should execute the callback code", function() {
+			$element.occasions({date_override:"May 04"});
+			expect($element.occasion).toEqual("star-wars");
+		});
+		
+	});
+
 });
