@@ -13,6 +13,9 @@ Include `jquery.occasions.js` (or `jquery.occasions.min.js`) and `occasions.json
 Call jquery.occasions on the element you want tagged with special occasions:
 
 ```
+<h1 id="logo"><a href="/">Logo</a></h1>
+```
+```
 $('#logo').occasions();
 ```
 
