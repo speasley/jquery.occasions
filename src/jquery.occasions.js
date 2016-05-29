@@ -196,7 +196,7 @@
     var todays_date = todaysDate(settings.date_override).slice(0,6);
     if(occasions[todays_date]!=null) {
       this.addClass(occasions[todays_date]);
-      this.occasion = occasions[todays_date];
+      this.data('occasion',occasions[todays_date]);
       settings.onSuccess.call(this);
     }
 		

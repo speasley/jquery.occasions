@@ -37,14 +37,14 @@ describe("Sample element", function() {
 		expect($element).toHaveClass("hug");
 	});
 	
-	it("should provide you with the Victoria Day 2014 occasion", function() {
+	it("should provide you with data-occasion('victoria') for Victoria Day 2014", function() {
 		$element.occasions({date_override:"May 19, 2014",country:"canada"});
-		expect($element.occasion).toEqual("victoria");
+		expect($element.data("occasion")).toEqual("victoria");
 	});
 
-	it("should provide you with the Victoria Day 2011 occasion", function() {
+	it("should provide you with data-occasion('victoria') for Victoria Day 2011", function() {
 		$element.occasions({date_override:"May 23, 2011",country:"canada"});
-		expect($element.occasion).toEqual("victoria");
+		expect($element.data("occasion")).toEqual("victoria");
 	});
 
 });
@@ -231,9 +231,9 @@ describe("Options", function() {
 
 	describe("Occasion property", function() {
 
-		it("should execute the callback code", function() {
+		it("should return data-occasion('star-wars')", function() {
 			$element.occasions({date_override:"May 04"});
-			expect($element.occasion).toEqual("star-wars");
+			expect($element.data("occasion")).toEqual("star-wars");
 		});
 		
 	});

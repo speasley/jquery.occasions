@@ -79,11 +79,7 @@ $('#logo').occasions({date_override:'May 04'});
 
 ### Current occasion
 
-You can retrieve the current occasion that is attached to your element with:
-
-```
-$('#logo').occasion
-```
+You can retrieve the current occasion that is attached to your element by accessing `$('#logo').data('occasion')`.
 
 ## Advanced usage
 
@@ -91,7 +87,7 @@ $('#logo').occasion
 ```
 $('#logo').occasions({
   onSuccess: function() {
-    if($('#logo').occasion=='star-wars') {
+    if( $(this).data('occasion') == 'star-wars' ) {
       alert('May the Fourth be with you.);
     }
   }
