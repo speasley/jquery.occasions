@@ -23,7 +23,7 @@ $('#logo').occasions();
 On May the 4th, this will result in:
 
 ```
-<h1 id="logo" class="star-wars">
+<h1 id="logo" class="star-wars" data-occasion="star-wars">
   <a href="/">Logo</a>
 </h1>
 ```
