@@ -75,6 +75,20 @@ $('#logo').occasions({
 Custom occasions can be added by editing the occasions.json file (or one of the other json files, if
 that makes more sense). Follow the pattern there and you’re be away to the races. Happy birthday!
 
+#### Special dates
+
+Two special date functions are available: `nthDay()` and `weekdayBefore()`. Use these in the json files as follows:
+
+```
+"_nthDay(2,Mon,Feb)":"happy-day" //2nd Monday of February
+```
+
+```
+"_weekdayBefore(Tue,Feb,27)":"nappy-day" //Tuesday before February 27
+```
+Don’t miss those double-quotes.
+
+
 ### Date override
 
 You can simulate an occasion by passing in the date you wish to test:
