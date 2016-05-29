@@ -82,12 +82,12 @@ Two special date functions are available: `nthDay()` and `weekdayBefore()`. Use 
 ```
 "_nthDay(2,Mon,Feb)":"happy-day"
 ```
-This would give you the second Monday of February.
+That would give you the second Monday of February.
 
 ```
 "_weekdayBefore(Tue,Feb,27)":"nappy-day"
 ```
-This would give you the Tuesday before February 27.
+That would give you the Tuesday before February 27.
 
 Don’t miss those double-quotes.
 
