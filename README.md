@@ -145,7 +145,7 @@ need.
 
 * Total rewrite with expanded test suite
 * Move occasions to external files (loaded only as needed)
-* Change date format
+* Change date format ("02/07" to "Feb 07")
 * Expand default occasions
 
 ##Contributing
