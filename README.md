@@ -10,11 +10,10 @@ Include `jquery.occasions.js` (or `jquery.occasions.min.js`) and `occasions.json
 
 ## Basic usage
 
-Call jquery.occasions on the element you want tagged with special occasions:
-
 ```
 <h1 id="logo"><a href="/">Logo</a></h1>
 ```
+Call jquery.occasions on the element you want tagged with special occasions:
 ```
 $('#logo').occasions();
 ```
