@@ -77,12 +77,17 @@ that makes more sense). Follow the pattern there and you’re away to the races.
 
 #### Special dates
 
-Two special date functions are available: `nthDay()` and `weekdayBefore()`. Use these in the json files as follows:
+Three special date functions are available: `nthDay()`, `lastWeekday` and `weekdayBefore()`. Use these in the json files as follows:
 
 ```
 "_nthDay(2,Mon,Feb)":"happy-day"
 ```
 That would give you the second Monday of February.
+
+```
+"_lastWeekday(Mon,May)":"memorial"
+```
+That would give you the last Monday of May, which the United States observes as Memorial Day.
 
 ```
 "_weekdayBefore(Tue,Feb,27)":"nappy-day"
@@ -164,11 +169,12 @@ need.
 * Use leading zeroes in all dates
 * Set occasion property on element
 
-### May 29, 2016 v2.0.0: Fort McMurray
+### May 29, 2016 v2.1.0: Fort McMurray
 
 * Total rewrite with expanded test suite
 * Move occasions to external files (loaded only as needed)
 * Change date format ("02/07" to "Feb 07")
+* Add lastWeekday function
 * Expand default occasions
 
 ##Contributing

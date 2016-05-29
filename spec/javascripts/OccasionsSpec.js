@@ -154,6 +154,29 @@ describe("Internal functions", function() {
     });
   });
 
+  describe("lastWeekday()", function() {
+    it("should return last Monday of May", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.lastWeekday("Mon,May")).toEqual("May 30");
+    });
+    it("should return last Friday of February", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.lastWeekday("Fri,Feb")).toEqual("Feb 26");
+    });
+    it("should return last Tuesday of June", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.lastWeekday("Tue,Jun")).toEqual("Jun 28");
+    });
+    it("should return last Wednesday of June", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.lastWeekday("Wed,Jun")).toEqual("Jun 29");
+    });
+    it("should return last Sunday of November", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.lastWeekday("Sun,Nov")).toEqual("Nov 27");
+    });
+  });
+
 });
 
 describe("Options", function() {

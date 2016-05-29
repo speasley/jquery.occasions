@@ -40,6 +40,11 @@
       params = params.slice(1,-1)
       new_date = weekdayBefore(params,override);
     }
+    if(date.slice(0,7) == '_lastWe'){
+      params = date.substring(12);
+      params = params.slice(1,-1)
+      new_date = lastWeekday(params,override);
+    }
     return new_date;
   }
 
@@ -141,9 +146,35 @@
       date = new Date(date*1000);
       month = monthName(date.getMonth());
       day = (date.getDate() < 10) ? '0'+date.getDate() : date.getDate();
-      var new_date = month+' '+day;
+      date = month+' '+day;
     }
-    return new_date;
+    return date;
+  }
+
+  var lastWeekday = internals.lastWeekday = function(params,override) {
+    var params = params.split(','); //weekday,month
+    var weekday = weekdayIndex(params[0]);
+    var month = monthIndex(params[1]);
+    var today = new Date();
+    var year = today.getFullYear();
+    if(override && override.length > 6) { year = override.slice(-4); }
+    var d = new Date(year,month+1,0); //last day of the month
+    var date;
+    if (d.getDay() == weekday) {
+      date = d;
+    }else{
+      var offset = 0;
+      var weekday_index = d.getDay(); //weekday of the reference date
+      while (weekday_index != weekday) {
+        weekday_index--; offset++;
+        if (weekday_index == -1) { weekday_index = 6; }
+      }
+      date = timestamp(month+1,0,year) - (86400 * offset);
+      date = new Date(date*1000);
+      var day = (date.getDate() < 10) ? '0'+date.getDate() : date.getDate();
+      date = params[1]+' '+day;
+    }
+    return date;
   }
 
   var sanitizePath = internals.sanitizePath = function(path) {

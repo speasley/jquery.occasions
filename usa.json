@@ -6,8 +6,10 @@
   "Apr 26":"pretzel",
   "Apr 30":"honesty",
   "May 26":"paper-airplane",
+  "_lastWeekday(Mon,May)":"memorial",
   "_nthDay(1,Fri,Jun)":"donut",
   "Jul 04":"independence",
+  "_nthDay(1,Mon,Sep)":"labor",
   "_nthDay(4,Tue,Nov)":"thanksgiving",
   "_nthDay(1,Sun,Nov)":"dst-ends",
 }
