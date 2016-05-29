@@ -127,6 +127,10 @@ Only one occasion is intended for a single day. If you use an option to include 
 those occasions will override the defaults in the event of a date overlap. If you need to avoid
 this, you can simply delete the troublesome line(s) from the associated json file.
 
+### Date format
+
+Names of months and weekdays must be three letters, as in `Jan`, `Feb`, `Mon` and `Tue`. Dates before the 10th must contain a leading zero, as in `Feb 07`.
+
 ### Optimization
 
 If you want to trim some overhead, you can edit the css and json files to remove occasions you don’t
