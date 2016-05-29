@@ -1,0 +1,15 @@
+{
+  "_nthDay(3,Mon,Feb)":"family",
+  "_nthDay(2,Sun,Mar)":"dst-begins",
+  "Apr 12":"grilled-cheese",
+  "Apr 20":"canadian-film",
+  "_weekdayBefore(Mon,May,25)":"victoria",
+  "Jun 21":"aboriginal",
+	"Jul 01":"canada",
+  "_nthDay(1,Mon,Sep)":"labour",
+  "_nthDay(2,Mon,Oct)":"thanksgiving",
+  "Nov 01":"all-saints",
+  "Nov 11":"remembrance",
+  "_nthDay(1,Sun,Nov)":"dst-ends",
+  "Dec 11":"statute"
+}
