@@ -73,7 +73,7 @@ $('#logo').occasions({
 ### Custom occasions
 
 Custom occasions can be added by editing the occasions.json file (or one of the other json files, if
-that makes more sense). Follow the pattern there and you’re be away to the races. Happy birthday!
+that makes more sense). Follow the pattern there and you’re away to the races. Happy birthday!
 
 #### Special dates
 
