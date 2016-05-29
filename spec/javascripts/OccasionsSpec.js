@@ -154,6 +154,29 @@ describe("Internal functions", function() {
     });
   });
 
+  describe("weekdayBefore()", function() {
+    it("should return Monday before May 12", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.weekdayBefore("Mon,May,12")).toEqual("May 09");
+    });
+    it("should return Tuesday before May 12", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.weekdayBefore("Tue,May,12")).toEqual("May 10");
+    });
+    it("should return Friday before July 10", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.weekdayBefore("Fri,Jul,10")).toEqual("Jul 08");
+    });
+    it("should return Sunday before August 07", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.weekdayBefore("Sun,Aug,07")).toEqual("Jul 31");
+    });
+    it("should return Sunday before October 09", function() {
+      var internals = $element.occasions({date_override:"May 12, 2016",internals:true});
+      expect(internals.weekdayBefore("Sun,Oct,09")).toEqual("Oct 02");
+    });
+  });
+
   describe("lastWeekday()", function() {
     it("should return last Monday of May", function() {
       var internals = $element.occasions({date_override:"May 12, 2016",internals:true});

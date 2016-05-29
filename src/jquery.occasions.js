@@ -64,13 +64,13 @@
   }
 
   var monthIndex = internals.monthIndex = function(m) {
-    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"
+    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
     ];
     return monthNames.indexOf(m);
   }
 
   var monthName = internals.monthName = function(m) {
-    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"
+    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
     ];
     return monthNames[m];
   }
@@ -143,11 +143,11 @@
         if (weekday_index == -1) { weekday_index = 6; }
       }
       date = timestamp(month,day,year) - (86400 * offset);
-      date = new Date(date*1000);
-      month = monthName(date.getMonth());
-      day = (date.getDate() < 10) ? '0'+date.getDate() : date.getDate();
-      date = month+' '+day;
     }
+    date = new Date(date*1000);
+    month = monthName(date.getMonth());
+    day = (date.getDate() < 10) ? '0'+date.getDate() : date.getDate();
+    date = month+' '+day;
     return date;
   }
 
