@@ -80,12 +80,15 @@ that makes more sense). Follow the pattern there and you’re be away to the rac
 Two special date functions are available: `nthDay()` and `weekdayBefore()`. Use these in the json files as follows:
 
 ```
-"_nthDay(2,Mon,Feb)":"happy-day" //2nd Monday of February
+"_nthDay(2,Mon,Feb)":"happy-day"
 ```
+This would give you the second Monday of February.
 
 ```
-"_weekdayBefore(Tue,Feb,27)":"nappy-day" //Tuesday before February 27
+"_weekdayBefore(Tue,Feb,27)":"nappy-day"
 ```
+This would give you the Tuesday before February 27.
+
 Don’t miss those double-quotes.
 
 
