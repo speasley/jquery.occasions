@@ -77,7 +77,7 @@ that makes more sense). Follow the pattern there and you’re away to the races.
 
 #### Special dates
 
-Three special date functions are available: `nthDay()`, `lastWeekday` and `weekdayBefore()`. Use these in the json files as follows:
+Three special date functions are available: `nthDay()`, `lastWeekday()` and `weekdayBefore()`. Use these in the json files as follows:
 
 ```
 "_nthDay(2,Mon,Feb)":"happy-day"
