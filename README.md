@@ -11,7 +11,9 @@ Include `jquery.occasions.js` (or `jquery.occasions.min.js`) and `occasions.json
 ## Basic usage
 
 ```
-<h1 id="logo"><a href="/">Logo</a></h1>
+<h1 id="logo">
+  <a href="/">Logo</a>
+</h1>
 ```
 Call jquery.occasions on the element you want tagged with special occasions:
 ```
@@ -21,7 +23,9 @@ $('#logo').occasions();
 On May the 4th, this will result in:
 
 ```
-<h1 id="logo" class="star-wars"><a href="/">Logo</a></h1>
+<h1 id="logo" class="star-wars">
+  <a href="/">Logo</a>
+</h1>
 ```
 
 In your CSS, define the styles of the occasions that you wish to make use of. You are provided with default style stubs in `jquery.occasions.css`. You may ignore the occasions that you do not want to use but their class names will still be added to your element.
