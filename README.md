@@ -100,6 +100,8 @@ You can simulate an occasion by passing in the date you wish to test:
 $('#logo').occasions({date_override:'May 04'});
 ```
 
+This is for testing purposes only; it can’t be your birthday everyday.
+
 ### Current occasion
 
 You can retrieve the current occasion that is attached to your element by accessing `$('#logo').data('occasion')`.
