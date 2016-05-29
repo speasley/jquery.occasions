@@ -1,6 +1,6 @@
 #jquery.occasions
 
-jquery.occasions is a [jQuery](http://www.jquery.com/) plugin that tags an element with a class reflecting the current day's occasion or holiday. You can then style that element with CSS (or do something else clever with it). For example, you could show special versions of your site's logo on different holidays.
+jquery.occasions is a [jQuery](http://www.jquery.com/) plugin that tags an element with a class reflecting the current day’s occasion or holiday. You can then style that element with CSS (or do something else clever with it). For example, you could show special versions of your site’s logo on different holidays.
 
 Minified version size: ~4kb
 
@@ -36,7 +36,7 @@ $('#logo').occasions({country:'canada'}); //requires canada.json
 
 ### path
 
-jquery.occasions will look for its required external files in the same directory from which it is run. If you wish to store these somewhere else, you'll need to provide the filepath.
+jquery.occasions will look for its required external files in the same directory from which it is run. If you wish to store these somewhere else, you’ll need to provide the filepath.
 
 ```
 $('#logo').occasions({path:'../my/file/path'});
@@ -67,7 +67,7 @@ $('#logo').occasions({
 ### Custom occasions
 
 Custom occasions can be added by editing the occasions.json file (or one of the other json files, if
-that makes more sense). Follow the pattern there and you're be away to the races. Happy birthday!
+that makes more sense). Follow the pattern there and you’re be away to the races. Happy birthday!
 
 ### Date override
 
@@ -104,7 +104,7 @@ this, you can simply delete the troublesome line(s) from the associated json fil
 
 ### Optimization
 
-If you want to trim some overhead, you can edit the css and json files to remove occasions you don't
+If you want to trim some overhead, you can edit the css and json files to remove occasions you don’t
 need.
 
 ## Change Log
@@ -119,7 +119,7 @@ need.
 ### Aug 8, 2014 v0.0.2: Yoho
 
 * Country setting bugfix
-* Support for nth weekday occasions (eg. Mother's Day, Second Sunday of May)
+* Support for nth weekday occasions (eg. Mother’s Day, Second Sunday of May)
 * Support for the weekday preceding a date (eg. Victoria Day, Monday before May 25)
 * Add Canadian and Christian nth weekday occasions
 * Remove Christian Easter occasions because they are based on moon cycles and beyond the scope of my interest in writing this plugin
