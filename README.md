@@ -109,14 +109,14 @@ need.
 
 ## Change Log
 
-### Version 0.0.1: Tunnel Mountain
+### Aug 7, 2014 v0.0.1: Tunnel Mountain
 
 * Basic functionality
 * Some unofficial holidays
 * Canadian fixed-date national holidays and observances
 * Christian fixed-date holidays and observances
 
-### Version 0.0.2: Yoho
+### Aug 8, 2014 v0.0.2: Yoho
 
 * Country setting bugfix
 * Support for nth weekday occasions (eg. Mother's Day, Second Sunday of May)
@@ -124,18 +124,18 @@ need.
 * Add Canadian and Christian nth weekday occasions
 * Remove Christian Easter occasions because they are based on moon cycles and beyond the scope of my interest in writing this plugin
 
-### Version 0.1.1: Bow River
+### Aug 9, 2014 v0.1.1: Bow River
 
 * Add callback function
 
-### Version 1.0.0: Skoki
+### Apr 10, 2015 v1.0.0: Skoki
 
 * Add Jasmine test suite
 * Add date override
 * Use leading zeroes in all dates
 * Set occasion property on element
 
-### Version 2.0.0: Fort McMurray
+### May 29, 2016 v2.0.0: Fort McMurray
 
 * Total rewrite with expanded test suite
 * Move occasions to external files (loaded only as needed)
