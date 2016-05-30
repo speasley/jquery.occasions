@@ -3,7 +3,7 @@
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  * 
- * Version 2.0.0
+ * Version 2.1.0
  * Made in Canada
  */
 ;(function ( $ ) {
@@ -40,6 +40,11 @@
       params = params.slice(1,-1)
       new_date = weekdayBefore(params,override);
     }
+    if(date.slice(0,7) == '_lastWe'){
+      params = date.substring(12);
+      params = params.slice(1,-1)
+      new_date = lastWeekday(params,override);
+    }
     return new_date;
   }
 
@@ -59,13 +64,13 @@
   }
 
   var monthIndex = internals.monthIndex = function(m) {
-    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"
+    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
     ];
     return monthNames.indexOf(m);
   }
 
   var monthName = internals.monthName = function(m) {
-    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"
+    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
     ];
     return monthNames[m];
   }
@@ -138,12 +143,38 @@
         if (weekday_index == -1) { weekday_index = 6; }
       }
       date = timestamp(month,day,year) - (86400 * offset);
-      date = new Date(date*1000);
-      month = monthName(date.getMonth());
-      day = (date.getDate() < 10) ? '0'+date.getDate() : date.getDate();
-      var new_date = month+' '+day;
     }
-    return new_date;
+    date = new Date(date*1000);
+    month = monthName(date.getMonth());
+    day = (date.getDate() < 10) ? '0'+date.getDate() : date.getDate();
+    date = month+' '+day;
+    return date;
+  }
+
+  var lastWeekday = internals.lastWeekday = function(params,override) {
+    var params = params.split(','); //weekday,month
+    var weekday = weekdayIndex(params[0]);
+    var month = monthIndex(params[1]);
+    var today = new Date();
+    var year = today.getFullYear();
+    if(override && override.length > 6) { year = override.slice(-4); }
+    var d = new Date(year,month+1,0); //last day of the month
+    var date;
+    if (d.getDay() == weekday) {
+      date = d;
+    }else{
+      var offset = 0;
+      var weekday_index = d.getDay(); //weekday of the reference date
+      while (weekday_index != weekday) {
+        weekday_index--; offset++;
+        if (weekday_index == -1) { weekday_index = 6; }
+      }
+      date = timestamp(month+1,0,year) - (86400 * offset);
+      date = new Date(date*1000);
+      var day = (date.getDate() < 10) ? '0'+date.getDate() : date.getDate();
+      date = params[1]+' '+day;
+    }
+    return date;
   }
 
   var sanitizePath = internals.sanitizePath = function(path) {
@@ -196,7 +227,7 @@
     var todays_date = todaysDate(settings.date_override).slice(0,6);
     if(occasions[todays_date]!=null) {
       this.addClass(occasions[todays_date]);
-      this.occasion = occasions[todays_date];
+      this.data('occasion',occasions[todays_date]);
       settings.onSuccess.call(this);
     }
 		
