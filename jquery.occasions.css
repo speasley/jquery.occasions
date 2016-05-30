@@ -7,7 +7,7 @@
 .valentines { } /* Valentine's Day */
 .mario { } /* Mario Day */
 .pi { } /* Pi Day */
-.tolkien { } /* Tolkien Day */
+.tolkien { } /* Tolkien Reading Day */
 .april-fools { } /* April Fools' Day */
 .first-contact { } /* First Contact Day */
 .foursquare { } /* Foursquare Day */
@@ -72,8 +72,10 @@
 .pretzel { } /* National Pretzel Day */
 .honesty { } /* National Honesty Day */
 .paper-airplane { } /* Paper Airplane Day */
+.memorial { } /* Memorial Day */
 .donut { } /* National Donut Day */
 .independence { } /* Independence Day */
+.labor { } /* Labor Day */
 .thanksgiving { } /* Thanksgiving */
 .dst-ends { } /* Daylight Saving Time ends */
 
