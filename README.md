@@ -118,7 +118,7 @@ You can retrieve the current occasion that is attached to your element by access
 $('#logo').occasions({
   onSuccess: function() {
     if( $(this).data('occasion') == 'star-wars' ) {
-      alert('May the Fourth be with you.);
+      alert('May the Fourth be with you.');
     }
   }
 });
