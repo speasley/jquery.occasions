@@ -42,10 +42,10 @@ $('#logo').occasions({country:'canada'}); //requires canada.json
 
 ### path
 
-jquery.occasions will look for its required external files in the same directory from which it is run. If you wish to store these somewhere else, you’ll need to provide the filepath.
+jquery.occasions will look for its required external files in the root directory. If you wish to store these somewhere else, you’ll need to provide the filepath.
 
 ```
-$('#logo').occasions({path:'../my/file/path'});
+$('#logo').occasions({path:'/my/file/path'});
 ```
 
 ### sect
