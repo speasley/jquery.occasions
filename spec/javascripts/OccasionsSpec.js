@@ -248,6 +248,11 @@ describe("Options", function() {
 
 	describe("Path", function() {
 
+    it("should return the path of the jquery.occasions file", function() {
+      var internals = $element.occasions({internals:true});
+      expect(internals.getPath()).toEqual("./");
+    });
+    
     it("should add the missing trailing slash to the custom path", function() {
       var internals = $element.occasions({internals:true});
       expect(internals.sanitizePath("custom/path")).toEqual("custom/path/");

@@ -3,7 +3,7 @@
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  * 
- * Version 2.1.0
+ * Version 2.1.1
  * Made in Canada
  */
 ;(function ( $ ) {
@@ -177,6 +177,24 @@
     return date;
   }
 
+  var getPath = internals.getPath = function() {
+    var filename = 'jquery.occasions'
+		var scripts = document.getElementsByTagName('script');
+    var filepath = '';
+    if (scripts && scripts.length > 0) {
+      for (var i in scripts) {
+        if (scripts[i].src && scripts[i].src.match(new RegExp(filename+'\\.js$'))) {
+          filepath = scripts[i].src.replace(new RegExp('(.*)'+filename+'\\.js$'), '$1');
+          if (filepath.slice(0,4)=='file' && filepath.slice(-21)=='jquery.occasions/src/') {
+            return './';
+          }else{
+            return filepath;
+          }
+        }
+      }
+    }
+  }
+
   var sanitizePath = internals.sanitizePath = function(path) {
     if(path.slice(-1) != '/') { path = path+'/'; }
     return path;
@@ -189,7 +207,7 @@
 		var occasions = null;
 	  var settings = $.extend({
 	    internals: false,
-	    path: '',
+	    path: getPath(),
 	    onSuccess: function() {}
 	  }, arguments[0] || {});
 		
@@ -199,7 +217,7 @@
 
     if(settings.country) { files.push(settings.country.toLowerCase()+'.json'); }
     if(settings.sect) { files.push(settings.sect.toLowerCase()+'.json'); }
-    if(settings.path != '') { settings.path = sanitizePath(settings.path); }
+    if(settings.path) { settings.path = sanitizePath(settings.path); }
     for (var i=0; i < files.length; i++) {
       $.ajax({
         async: false,
