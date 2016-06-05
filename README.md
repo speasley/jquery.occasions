@@ -169,13 +169,16 @@ need.
 * Use leading zeroes in all dates
 * Set occasion property on element
 
-### May 29, 2016 v2.1.0: Fort McMurray
+### May 29, 2016 v2.0.0: Fort McMurray
 
 * Total rewrite with expanded test suite
 * Move occasions to external files (loaded only as needed)
 * Change date format ("02/07" to "Feb 07")
-* Add lastWeekday function
 * Expand default occasions
+
+### May 29, 2016 v2.1.0
+
+* Add lastWeekday function
 
 ### Jun 4, 2016 v2.1.1
 
