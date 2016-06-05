@@ -183,6 +183,7 @@
     var filepath = '';
     if (scripts && scripts.length > 0) {
       for (var i in scripts) {
+        // uncompressed
         if (scripts[i].src && scripts[i].src.match(new RegExp(filename+'\\.js$'))) {
           filepath = scripts[i].src.replace(new RegExp('(.*)'+filename+'\\.js$'), '$1');
           if (filepath.slice(0,4)=='file' && filepath.slice(-21)=='jquery.occasions/src/') {
@@ -190,6 +191,11 @@
           }else{
             return filepath;
           }
+        }
+        // minified
+        if (scripts[i].src && scripts[i].src.match(new RegExp(filename+'\\.min.js$'))) {
+          filepath = scripts[i].src.replace(new RegExp('(.*)'+filename+'\\.min.js$'), '$1');
+          return filepath;
         }
       }
     }
