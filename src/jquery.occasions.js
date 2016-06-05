@@ -207,7 +207,7 @@
 		var occasions = null;
 	  var settings = $.extend({
 	    internals: false,
-	    path: getPath(),
+	    path: '',
 	    onSuccess: function() {}
 	  }, arguments[0] || {});
 		
@@ -217,14 +217,18 @@
 
     if(settings.country) { files.push(settings.country.toLowerCase()+'.json'); }
     if(settings.sect) { files.push(settings.sect.toLowerCase()+'.json'); }
-    if(settings.path) { settings.path = sanitizePath(settings.path); }
+    if(settings.path) {
+      settings.path = sanitizePath(settings.path);
+    }else{
+      settings.path = getPath();
+    }
     for (var i=0; i < files.length; i++) {
       $.ajax({
         async: false,
         url: settings.path+files[i],
         type:'get',
         dataType:'json',
-        success: function(data) {    
+        success: function(data) { 
           if(occasions == null) {
             occasions = data;
           }else{
