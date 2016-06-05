@@ -1,8 +1,8 @@
 var $element;
 
 beforeEach(function() {
-	loadFixtures("occasion.html");
-	$element = $("#logo");
+  loadFixtures("occasion.html");
+  $element = $("#logo");
 });
 
 
@@ -11,41 +11,41 @@ describe("occasions", function() {
   it('should be chainable', function() {
     $element.occasions().addClass('other');
     expect($element.hasClass('other')).toBeTruthy();
-	});
+  });
 
 });
 
 describe("Sample element", function() {
 
-	it("should exist in the fixture", function() {
-		expect($element).toHaveId("logo");
-	});
-	
-	it("should call jquery.occasions()", function() {
-		spyOn($element, 'occasions');
-		$element.occasions();
-		expect($element.occasions).toHaveBeenCalled();
-	});
-	
-	it("should not have a class if today is not an occasion", function() {
-		$element.occasions({date_override:"Jan 23"});
-		expect($element).not.toHaveAttr("class");
-	});
-	
-	it("should have a class if 'today' is an occasion", function() {
-		$element.occasions({date_override:"Jan 21"});
-		expect($element).toHaveClass("hug");
-	});
-	
-	it("should provide you with data-occasion('victoria') for Victoria Day 2014", function() {
-		$element.occasions({date_override:"May 19, 2014",country:"canada"});
-		expect($element.data("occasion")).toEqual("victoria");
-	});
+  it("should exist in the fixture", function() {
+    expect($element).toHaveId("logo");
+  });
+  
+  it("should call jquery.occasions()", function() {
+    spyOn($element, 'occasions');
+    $element.occasions();
+    expect($element.occasions).toHaveBeenCalled();
+  });
+  
+  it("should not have a class if today is not an occasion", function() {
+    $element.occasions({date_override:"Jan 23"});
+    expect($element).not.toHaveAttr("class");
+  });
+  
+  it("should have a class if 'today' is an occasion", function() {
+    $element.occasions({date_override:"Jan 21"});
+    expect($element).toHaveClass("hug");
+  });
+  
+  it("should provide you with data-occasion('victoria') for Victoria Day 2014", function() {
+    $element.occasions({date_override:"May 19, 2014",country:"canada"});
+    expect($element.data("occasion")).toEqual("victoria");
+  });
 
-	it("should provide you with data-occasion('victoria') for Victoria Day 2011", function() {
-		$element.occasions({date_override:"May 23, 2011",country:"canada"});
-		expect($element.data("occasion")).toEqual("victoria");
-	});
+  it("should provide you with data-occasion('victoria') for Victoria Day 2011", function() {
+    $element.occasions({date_override:"May 23, 2011",country:"canada"});
+    expect($element.data("occasion")).toEqual("victoria");
+  });
 
 });
 
@@ -204,7 +204,7 @@ describe("Internal functions", function() {
 
 describe("Options", function() {
 
-	describe("Date override", function() {
+  describe("Date override", function() {
 
     it("should override today's date", function() {
       var internals = $element.occasions({internals:true});
@@ -216,37 +216,37 @@ describe("Options", function() {
       expect(internals.todaysDate("Feb 27, 1979")).toEqual("Feb 27, 1979");
     });
 
-	});
+  });
 
-	describe("Country", function() {
-	
-		it("should not add 'aboriginal' class as a default", function() {
-			$element.occasions({date_override:"Jun 21"});
-			expect($element).not.toHaveClass("aboriginal");
-		});
-	
-		it("should add 'aboriginal' class with country option set", function() {
-			$element.occasions({date_override:"Jun 21",country:"canada"});
-			expect($element).toHaveClass("aboriginal");
-		});
+  describe("Country", function() {
+  
+    it("should not add 'aboriginal' class as a default", function() {
+      $element.occasions({date_override:"Jun 21"});
+      expect($element).not.toHaveClass("aboriginal");
+    });
+  
+    it("should add 'aboriginal' class with country option set", function() {
+      $element.occasions({date_override:"Jun 21",country:"canada"});
+      expect($element).toHaveClass("aboriginal");
+    });
 
-	});
+  });
 
-	describe("Sect", function() {
-	
-		it("should not add 'christmas' class as a default", function() {
-			$element.occasions({date_override:"Dec 25"});
-			expect($element).not.toHaveClass("christmas");
-		});
-	
-		it("should add 'christmas' class with sect option set", function() {
-			$element.occasions({date_override:"Dec 25",sect:"christian"});
-			expect($element).toHaveClass("christmas");
-		});
+  describe("Sect", function() {
+  
+    it("should not add 'christmas' class as a default", function() {
+      $element.occasions({date_override:"Dec 25"});
+      expect($element).not.toHaveClass("christmas");
+    });
+  
+    it("should add 'christmas' class with sect option set", function() {
+      $element.occasions({date_override:"Dec 25",sect:"christian"});
+      expect($element).toHaveClass("christmas");
+    });
 
-	});
+  });
 
-	describe("Path", function() {
+  describe("Path", function() {
 
     it("should return the path of the jquery.occasions file", function() {
       var internals = $element.occasions({internals:true});
@@ -265,28 +265,28 @@ describe("Options", function() {
 
   });
 
-	describe("Callback", function() {
+  describe("Callback", function() {
 
-		it("should execute the callback code", function() {
-			var testVar = "foo"
-			$element.occasions({
-				date_override:"May 04",
-				onSuccess: function() {
-					testVar = "bar"
-				}
-			});
-			expect(testVar).toEqual("bar");
-		});
-		
-	});
+    it("should execute the callback code", function() {
+      var testVar = "foo"
+      $element.occasions({
+        date_override:"May 04",
+        onSuccess: function() {
+          testVar = "bar"
+        }
+      });
+      expect(testVar).toEqual("bar");
+    });
+    
+  });
 
-	describe("Occasion property", function() {
+  describe("Occasion property", function() {
 
-		it("should return data-occasion('star-wars')", function() {
-			$element.occasions({date_override:"May 04"});
-			expect($element.data("occasion")).toEqual("star-wars");
-		});
-		
-	});
+    it("should return data-occasion('star-wars')", function() {
+      $element.occasions({date_override:"May 04"});
+      expect($element.data("occasion")).toEqual("star-wars");
+    });
+    
+  });
 
 });

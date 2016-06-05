@@ -7,12 +7,12 @@
  * Made in Canada
  */
 ;(function ( $ ) {
-	
-	'use strict';
-	
+  
+  'use strict';
+  
   // internal functions
-	var internals = {};
-	
+  var internals = {};
+  
   var renameKey = internals.renameKey = function(hash, oldName, newName) {
     if (oldName == newName) { return hash; }
     if (hash.hasOwnProperty(oldName)) {
@@ -21,12 +21,12 @@
     }
     return hash;
   }
-	
+  
   var mergeHashes = internals.mergeHashes = function(obj, src) {
     Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
     return obj;
   }
-	
+  
   var specialDate = internals.specialDate = function(date,override) {
     var params;
     var new_date;
@@ -48,11 +48,11 @@
     return new_date;
   }
 
-	var timestamp = internals.timestamp = function(month,day,year) {
+  var timestamp = internals.timestamp = function(month,day,year) {
     var ts = new Date(year,month,day).getTime() / 1000;
     return ts;
   };
-	
+  
   var globalYear = internals.globalYear = function(override) {
     var year = new Date().getFullYear();
     var override_year = null;
@@ -179,7 +179,7 @@
 
   var getPath = internals.getPath = function() {
     var filename = 'jquery.occasions'
-		var scripts = document.getElementsByTagName('script');
+    var scripts = document.getElementsByTagName('script');
     var filepath = '';
     if (scripts && scripts.length > 0) {
       for (var i in scripts) {
@@ -205,18 +205,18 @@
     if(path.slice(-1) != '/') { path = path+'/'; }
     return path;
   }
-	
-	// main
-	$.fn.occasions = function() {
-		
-		var files = ['occasions.json'];
-		var occasions = null;
-	  var settings = $.extend({
-	    internals: false,
-	    path: '',
-	    onSuccess: function() {}
-	  }, arguments[0] || {});
-		
+  
+  // main
+  $.fn.occasions = function() {
+    
+    var files = ['occasions.json'];
+    var occasions = null;
+    var settings = $.extend({
+      internals: false,
+      path: '',
+      onSuccess: function() {}
+    }, arguments[0] || {});
+    
     if (settings.internals) {
       return internals;
     }
@@ -251,15 +251,15 @@
         occasions = renameKey(occasions,key,specialDate(key,settings.date_override));
       }
     });
-		
+    
     var todays_date = todaysDate(settings.date_override).slice(0,6);
     if(occasions[todays_date]!=null) {
       this.addClass(occasions[todays_date]);
       this.data('occasion',occasions[todays_date]);
       settings.onSuccess.call(this);
     }
-		
-		return this;
-		
-	};
+    
+    return this;
+    
+  };
 }( jQuery ));
