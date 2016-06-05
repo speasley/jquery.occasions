@@ -150,7 +150,7 @@ need.
 * Canadian fixed-date national holidays and observances
 * Christian fixed-date holidays and observances
 
-### Aug 8, 2014 v0.0.2: Yoho
+### Aug 8, 2014 v0.0.2
 
 * Country setting bugfix
 * Support for nth weekday occasions (eg. Mother’s Day, Second Sunday of May)
@@ -158,7 +158,7 @@ need.
 * Add Canadian and Christian nth weekday occasions
 * Remove Christian Easter occasions because they are based on moon cycles and beyond the scope of my interest in writing this plugin
 
-### Aug 9, 2014 v0.1.1: Bow River
+### Aug 9, 2014 v0.1.0
 
 * Add callback function
 
@@ -176,6 +176,10 @@ need.
 * Change date format ("02/07" to "Feb 07")
 * Add lastWeekday function
 * Expand default occasions
+
+### Jun 4, 2016 v2.1.1
+
+* Path setting bugfix
 
 ##Contributing
 
