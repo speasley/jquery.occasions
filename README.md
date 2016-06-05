@@ -158,10 +158,10 @@ $('body').occasions();
 In their CSS, they have:
 
 ```
-#meeting-badge {
+#meeting-tonight {
   display: none;
 }
-body.book-club-meeting #meeting-badge {
+body.book-club-meeting #meeting-tonight {
   display: block;
 }
 ```
