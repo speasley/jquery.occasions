@@ -124,6 +124,48 @@ $('#logo').occasions({
 });
 ```
 
+## Usage examples
+
+### Book club
+
+A book club meets on the last Friday of each month. On those Fridays, their website shows a reminder badge.
+
+Their `occasions.json` file looks like this:
+
+```
+{
+  "_lastWeekday(Fri,Jan)":"book-club-meeting",
+  "_lastWeekday(Fri,Feb)":"book-club-meeting",
+  "_lastWeekday(Fri,Mar)":"book-club-meeting",
+  "_lastWeekday(Fri,Apr)":"book-club-meeting",
+  "_lastWeekday(Fri,May)":"book-club-meeting",
+  "_lastWeekday(Fri,Jun)":"book-club-meeting",
+  "_lastWeekday(Fri,Jul)":"book-club-meeting",
+  "_lastWeekday(Fri,Aug)":"book-club-meeting",
+  "_lastWeekday(Fri,Sep)":"book-club-meeting",
+  "_lastWeekday(Fri,Oct)":"book-club-meeting",
+  "_lastWeekday(Fri,Nov)":"book-club-meeting",
+  "_lastWeekday(Fri,Dec)":"book-club-meeting"
+}
+```
+
+They call `jquery.occasions()` on their `body` element:
+
+```
+$('body').occasions();
+```
+
+In their CSS, they have:
+
+```
+#meeting-badge {
+  display: none;
+}
+body.book-club-meeting #meeting-badge {
+  display: block;
+}
+```
+
 ## Notes
 
 ### Occasion priority
